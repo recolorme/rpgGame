@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="rpgGame"
+run/main_scene="uid://bic1j8ofgobyq"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Debug="*res://debug.gd"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=240
+window/size/borderless=true
+window/size/window_width_override=768
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="rpgGame"
+
+[gui]
+
+theme/custom_font="uid://ca1m68epjdmyy"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

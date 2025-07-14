@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://djs17jejidaca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37hvx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wja7o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iuyaq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rpncg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_todir"]
+
+[resource]
+Button/colors/font_hover_pressed_color = Color(0.0816668, 0, 0.35, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_37hvx")
+Button/styles/focus = SubResource("StyleBoxEmpty_wja7o")
+Button/styles/hover = SubResource("StyleBoxEmpty_iuyaq")
+Button/styles/normal = SubResource("StyleBoxEmpty_rpncg")
+Button/styles/pressed = SubResource("StyleBoxEmpty_todir")
+VBoxContainer/constants/separation = -2
