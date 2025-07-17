@@ -72,10 +72,13 @@ func _ready() -> void:
 			leftButton.focus_neighbor_left = rightButton.get_path()
 			rightButton.focus_neighbor_right = leftButton.get_path()
 	elif _class.begins_with("VBox"):
-		var topButton: BaseButton = buttons.front()
-		var bottomButton: BaseButton = buttons.back()
-		topButton.focus_neighbor_top = bottomButton.get_path()
-		bottomButton.focus_neighbor_top = topButton.get_path()
+		for x in range(buttons.size()): #button wrapping code
+			var button: BaseButton = buttons[x]
+			var above = buttons[(x - 1 + buttons.size()) % buttons.size()]
+			var below = buttons[(x + 1) % buttons.size()]
+			
+			button.focus_neighbor_top = above.get_path()
+			button.focus_neighbor_bottom = below.get_path()
 	elif _class.begins_with("HBox"):
 		var firstButton: BaseButton = buttons.front()
 		var lastButton: BaseButton = buttons.back()
@@ -83,7 +86,7 @@ func _ready() -> void:
 		lastButton.focus_neighbor_right = firstButton.get_path()
 
 func getButtons() -> Array:
-	return get_children()
+	return get_children().filter(func(n): return n is BaseButton)
 
 func connectToButtons(target: Object, _name: String = name) -> void:
 	var callable: Callable = Callable()

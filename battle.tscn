@@ -67,6 +67,7 @@ offset_top = 3.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = -1
 script = ExtResource("4_0npn6")
 
 [node name="Button" type="Button" parent="Options/Options"]
@@ -77,10 +78,14 @@ text = "FIGHT"
 
 [node name="Button2" type="Button" parent="Options/Options"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button")
+focus_neighbor_bottom = NodePath("../Button3")
 text = "MAGIC"
 
 [node name="Button3" type="Button" parent="Options/Options"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button2")
+focus_neighbor_bottom = NodePath("../Button4")
 text = "ITEM"
 
 [node name="Button4" type="Button" parent="Options/Options"]
