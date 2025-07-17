@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dt06awuyrvn0g" path="res://battle.gd" id="2_dw4jg"]
 [ext_resource type="PackedScene" uid="uid://bfa3nj3sh1b0h" path="res://battle_player.tscn" id="3_7sfm4"]
 [ext_resource type="Texture2D" uid="uid://b8jm2psg61jdu" path="res://assets/placeholderenemy.png" id="3_i431l"]
-[ext_resource type="Script" uid="uid://spl0qg4x1eih" path="res://options.gd" id="4_0npn6"]
+[ext_resource type="Script" uid="uid://spl0qg4x1eih" path="res://menu.gd" id="4_0npn6"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -27,6 +27,7 @@ grow_vertical = 2
 color = Color(0.0561, 0.142835, 0.33, 1)
 
 [node name="Bottom" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -37,7 +38,6 @@ offset_top = -66.0
 offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 0
 
 [node name="Enemies" parent="Bottom" instance=ExtResource("2_8ha6l")]
 layout_mode = 2
@@ -47,7 +47,7 @@ layout_mode = 2
 size_flags_stretch_ratio = 2.0
 
 [node name="Options" parent="." instance=ExtResource("2_8ha6l")]
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(48, 52)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -71,6 +71,8 @@ script = ExtResource("4_0npn6")
 
 [node name="Button" type="Button" parent="Options/Options"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button4")
+focus_neighbor_bottom = NodePath("../Button2")
 text = "FIGHT"
 
 [node name="Button2" type="Button" parent="Options/Options"]
@@ -83,6 +85,8 @@ text = "ITEM"
 
 [node name="Button4" type="Button" parent="Options/Options"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Button3")
+focus_neighbor_bottom = NodePath("../Button")
 text = "DEFEND"
 
 [node name="Enemies" type="Control" parent="."]
@@ -156,3 +160,6 @@ offset_left = 32.0
 offset_top = 118.0
 offset_right = 48.0
 offset_bottom = 134.0
+
+[connection signal="buttonFocused" from="Options/Options" to="." method="_on_options_button_focused"]
+[connection signal="buttonPressed" from="Options/Options" to="." method="_on_options_button_pressed"]

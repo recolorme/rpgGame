@@ -1,0 +1,112 @@
+class_name Menu extends Container
+
+signal buttonFocused(button: BaseButton)
+signal buttonPressed(button: BaseButton)
+
+@export var autoWrap: bool = true
+
+var i: int = 0
+
+#TODO: replace all blue text values with camelCase if possible
+func _ready() -> void:
+	#Connect to buttons
+	for button in getButtons():
+		button.focus_exited.connect(_on_Button_focus_exited.bind(button))
+		button.focus_entered.connect(_onButtonFocused.bind(button))
+		button.pressed.connect(_onButtonPressed.bind(button))
+		
+	#Set focus neighbors
+	#TODO Fix for grids (pass only issue with > 2 column grid)
+	# NOTE Negative separation values will cause issues with auto neighbor focus for middle controls
+	if !autoWrap:
+		return
+		
+	var _class: String = get_class()
+	var buttons: Array = getButtons()
+	var useThisOnGridContainers: bool = false #hot fix
+	
+	if useThisOnGridContainers and get("columns"): #GridContainer
+		var topRow: Array = []
+		var bottomRow: Array = []
+		var cols: int = self.columns
+		var rows: int = round(buttons.size() / cols)
+		var btmRange: Array = [rows * cols - cols, rows * cols - 1]
+#		var btmRange: Array = [rows * (cols - 1) + 1, rows * cols]	
+	
+#		print(btm_range)
+	
+		#if clear_first:
+			#for button in buttons:
+				#button.focus_neighbor_top = null
+				#button.focus_neighbor_bottom = null
+				
+		# Get top and bottom rows of buttons
+		for x in cols:
+#			print(buttons[x].text)
+			topRow.append(buttons[x])
+		for x in range(btmRange[0], btmRange[1] + 1):
+#			print(x)
+			if x > buttons.size():
+#				print(buttons[x - cols].text)
+				bottomRow.append(buttons[x - cols])
+				continue
+#			print(buttons[x].text)
+			bottomRow.append(buttons[x])
+			
+		# Change their focus neighbors accordingly.
+		for x in cols:
+			var topButton: BaseButton = topRow[x]
+			var bottomButton: BaseButton = bottomRow[x]
+#			print(topButton)
+#			print(bottomButton)
+			if topButton == bottomButton:
+				continue
+			topButton.focus_neighbor_top = bottomButton.get_path()
+			bottomButton.focus_neighbor_bottom = topButton.get_path()
+			
+		# Repeat for left and right columns.
+		for i in range(0, buttons.size(), cols):
+			var leftButton: BaseButton = buttons[i]
+			var rightButton: BaseButton = buttons[i+ cols - 1]
+#			print(leftButton, "...", rightButton)
+			leftButton.focus_neighbor_left = rightButton.get_path()
+			rightButton.focus_neighbor_right = leftButton.get_path()
+	elif _class.begins_with("VBox"):
+		var topButton: BaseButton = buttons.front()
+		var bottomButton: BaseButton = buttons.back()
+		topButton.focus_neighbor_top = bottomButton.get_path()
+		bottomButton.focus_neighbor_top = topButton.get_path()
+	elif _class.begins_with("HBox"):
+		var firstButton: BaseButton = buttons.front()
+		var lastButton: BaseButton = buttons.back()
+		firstButton.focus_neighbor_left = lastButton.get_path()
+		lastButton.focus_neighbor_right = firstButton.get_path()
+
+func getButtons() -> Array:
+	return get_children()
+
+func connectToButtons(target: Object, _name: String = name) -> void:
+	var callable: Callable = Callable()
+	callable = Callable(target, "_on_" + _name + "_focused")
+	buttonFocused.connect(callable)
+	callable = Callable(target, "_on_" + _name + "_pressed")
+	buttonPressed.connect(callable)
+
+func buttonFocus(n: int = i) -> void:
+	var button: BaseButton = getButtons()[n]
+	button.grab_focus()
+
+func _on_Button_focus_exited(button: BaseButton) -> void:
+	await get_tree().process_frame
+	if not get_viewport().gui_get_focus_owner() in getButtons():
+		print("bringing focus back")
+		button.grab_focus()
+		
+func _onButtonFocused(button: BaseButton) -> void:
+	emit_signal("buttonFocused", button)
+
+func _onButtonPressed(button: BaseButton) -> void:
+	emit_signal("buttonPressed", button)
+
+
+#TODO: 39:50 video mark
