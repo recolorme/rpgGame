@@ -1,4 +1,4 @@
-class_name Menu extends Container
+class_name Menu extends Control
 
 signal buttonFocused(button: BaseButton)
 signal buttonPressed(button: BaseButton)
@@ -21,7 +21,7 @@ func _ready() -> void:
 	if !autoWrap:
 		return
 		
-	var _class: String = get_class()
+	var _class: String = get_parent().get_class()
 	var buttons: Array = getButtons()
 	var useThisOnGridContainers: bool = false #hot fix
 	
@@ -72,18 +72,22 @@ func _ready() -> void:
 			leftButton.focus_neighbor_left = rightButton.get_path()
 			rightButton.focus_neighbor_right = leftButton.get_path()
 	elif _class.begins_with("VBox"):
-		for x in range(buttons.size()): #button wrapping code
+		for x in range(buttons.size()): #button wrapping code############### DIFFERS FROM TUT
 			var button: BaseButton = buttons[x]
 			var above = buttons[(x - 1 + buttons.size()) % buttons.size()]
 			var below = buttons[(x + 1) % buttons.size()]
 			
 			button.focus_neighbor_top = above.get_path()
 			button.focus_neighbor_bottom = below.get_path()
+			button.focus_neighbor_left = NodePath("")
+			button.focus_neighbor_right = NodePath("")################# DIFFERS FROM TUT
 	elif _class.begins_with("HBox"):
 		var firstButton: BaseButton = buttons.front()
 		var lastButton: BaseButton = buttons.back()
 		firstButton.focus_neighbor_left = lastButton.get_path()
 		lastButton.focus_neighbor_right = firstButton.get_path()
+
+	button_enable_focus(false)
 
 func getButtons() -> Array:
 	return get_children().filter(func(n): return n is BaseButton)
@@ -95,21 +99,24 @@ func connectToButtons(target: Object, _name: String = name) -> void:
 	callable = Callable(target, "_on_" + _name + "_pressed")
 	buttonPressed.connect(callable)
 
+func button_enable_focus(on: bool) -> void:
+	var mode: FocusMode = FocusMode.FOCUS_ALL if on else FocusMode.FOCUS_NONE
+	for button in getButtons():
+		button.set_focus_mode(mode)
+
 func buttonFocus(n: int = i) -> void:
+	button_enable_focus(true)
 	var button: BaseButton = getButtons()[n]
 	button.grab_focus()
 
 func _on_Button_focus_exited(button: BaseButton) -> void:
 	await get_tree().process_frame
 	if not get_viewport().gui_get_focus_owner() in getButtons():
-		print("bringing focus back")
-		button.grab_focus()
-		
+		button_enable_focus(false)
+
 func _onButtonFocused(button: BaseButton) -> void:
+	i = button.get_index()
 	emit_signal("buttonFocused", button)
 
 func _onButtonPressed(button: BaseButton) -> void:
 	emit_signal("buttonPressed", button)
-
-
-#TODO: 39:50 video mark

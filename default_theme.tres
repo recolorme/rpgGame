@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://djs17jejidaca"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://djs17jejidaca"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37hvx"]
 
@@ -9,6 +9,12 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rpncg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_todir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp0wp"]
+bg_color = Color(0.0958583, 0.264022, 0.378652, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7bfs"]
+bg_color = Color(0.2025, 0.81, 0, 1)
 
 [resource]
 Button/colors/font_color = Color(0.448, 0.5404, 0.7, 1)
@@ -22,4 +28,12 @@ Button/styles/focus = SubResource("StyleBoxEmpty_wja7o")
 Button/styles/hover = SubResource("StyleBoxEmpty_iuyaq")
 Button/styles/normal = SubResource("StyleBoxEmpty_rpncg")
 Button/styles/pressed = SubResource("StyleBoxEmpty_todir")
-VBoxContainer/constants/separation = -2
+HBoxContainer/constants/separation = 4
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
+ProgressBar/font_sizes/font_size = 17
+ProgressBar/styles/background = SubResource("StyleBoxFlat_bp0wp")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_e7bfs")
+VBoxContainer/constants/separation = -6

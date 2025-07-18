@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmwyoey2t5cx2"]
+
+[ext_resource type="Texture2D" uid="uid://b8jm2psg61jdu" path="res://assets/placeholderenemy.png" id="1_u1kt3"]
+[ext_resource type="Script" uid="uid://eqrxxy54ug5k" path="res://battle_enemy.gd" id="2_m8k6a"]
+[ext_resource type="PackedScene" uid="uid://hklpjakqt362" path="res://atb_bar.tscn" id="3_3rfcl"]
+[ext_resource type="Script" uid="uid://gfv5kgskeu8c" path="res://atb_bar.gd" id="4_0sxcy"]
+
+[node name="BattleEnemy" type="TextureButton"]
+offset_right = 16.0
+offset_bottom = 16.0
+texture_normal = ExtResource("1_u1kt3")
+flip_h = true
+script = ExtResource("2_m8k6a")
+
+[node name="ATBBar" parent="." instance=ExtResource("3_3rfcl")]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 18.0
+offset_right = 26.0
+offset_bottom = 26.0
+script = ExtResource("4_0sxcy")

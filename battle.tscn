@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bic1j8ofgobyq"]
+[gd_scene load_steps=9 format=3 uid="uid://bic1j8ofgobyq"]
 
 [ext_resource type="Theme" uid="uid://djs17jejidaca" path="res://default_theme.tres" id="1_l2koo"]
 [ext_resource type="PackedScene" uid="uid://cmjrf0ne8f0i" path="res://window_default.tscn" id="2_8ha6l"]
 [ext_resource type="Script" uid="uid://dt06awuyrvn0g" path="res://battle.gd" id="2_dw4jg"]
 [ext_resource type="PackedScene" uid="uid://bfa3nj3sh1b0h" path="res://battle_player.tscn" id="3_7sfm4"]
-[ext_resource type="Texture2D" uid="uid://b8jm2psg61jdu" path="res://assets/placeholderenemy.png" id="3_i431l"]
 [ext_resource type="Script" uid="uid://spl0qg4x1eih" path="res://menu.gd" id="4_0npn6"]
+[ext_resource type="PackedScene" uid="uid://bmwyoey2t5cx2" path="res://battle_enemy.tscn" id="4_lcjiy"]
+[ext_resource type="PackedScene" uid="uid://bka4ax6ube6a3" path="res://battle_player_bar.tscn" id="4_mhv3b"]
+[ext_resource type="PackedScene" uid="uid://kbbtw168dn82" path="res://menu_cursor.tscn" id="8_mhv3b"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -26,74 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0561, 0.142835, 0.33, 1)
 
-[node name="Bottom" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 52)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -66.0
-offset_right = -4.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Enemies" parent="Bottom" instance=ExtResource("2_8ha6l")]
-layout_mode = 2
-
-[node name="Players" parent="Bottom" instance=ExtResource("2_8ha6l")]
-layout_mode = 2
-size_flags_stretch_ratio = 2.0
-
-[node name="Options" parent="." instance=ExtResource("2_8ha6l")]
-custom_minimum_size = Vector2(48, 52)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -66.0
-offset_right = 78.0
-grow_vertical = 0
-size_flags_stretch_ratio = 2.0
-
-[node name="Options" type="VBoxContainer" parent="Options"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 3.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = -1
-script = ExtResource("4_0npn6")
-
-[node name="Button" type="Button" parent="Options/Options"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Button4")
-focus_neighbor_bottom = NodePath("../Button2")
-text = "FIGHT"
-
-[node name="Button2" type="Button" parent="Options/Options"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Button")
-focus_neighbor_bottom = NodePath("../Button3")
-text = "MAGIC"
-
-[node name="Button3" type="Button" parent="Options/Options"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Button2")
-focus_neighbor_bottom = NodePath("../Button4")
-text = "ITEM"
-
-[node name="Button4" type="Button" parent="Options/Options"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Button3")
-focus_neighbor_bottom = NodePath("../Button")
-text = "DEFEND"
-
 [node name="Enemies" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -101,34 +35,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
+script = ExtResource("4_0npn6")
 
-[node name="BattleEnemy" type="TextureButton" parent="Enemies"]
+[node name="BattleEnemy" parent="Enemies" instance=ExtResource("4_lcjiy")]
 layout_mode = 0
-offset_left = 184.0
-offset_top = 53.0
-offset_right = 200.0
-offset_bottom = 69.0
-texture_normal = ExtResource("3_i431l")
-flip_h = true
+offset_left = 181.0
+offset_top = 49.0
+offset_right = 197.0
+offset_bottom = 65.0
+focus_neighbor_left = NodePath("../BattleEnemy3")
+focus_neighbor_top = NodePath("../BattleEnemy3")
 
-[node name="BattleEnemy2" type="TextureButton" parent="Enemies"]
+[node name="BattleEnemy2" parent="Enemies" instance=ExtResource("4_lcjiy")]
 layout_mode = 0
-offset_left = 196.0
-offset_top = 83.0
-offset_right = 212.0
-offset_bottom = 99.0
-texture_normal = ExtResource("3_i431l")
-flip_h = true
+offset_left = 190.0
+offset_top = 78.0
+offset_right = 206.0
+offset_bottom = 94.0
 
-[node name="BattleEnemy3" type="TextureButton" parent="Enemies"]
+[node name="BattleEnemy3" parent="Enemies" instance=ExtResource("4_lcjiy")]
 layout_mode = 0
-offset_left = 205.0
-offset_top = 114.0
-offset_right = 221.0
-offset_bottom = 130.0
-texture_normal = ExtResource("3_i431l")
-flip_h = true
+offset_left = 199.0
+offset_top = 109.0
+offset_right = 215.0
+offset_bottom = 125.0
+focus_neighbor_right = NodePath("../BattleEnemy")
+focus_neighbor_bottom = NodePath("../BattleEnemy")
 
 [node name="Players" type="Control" parent="."]
 layout_mode = 1
@@ -137,6 +69,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_0npn6")
 
 [node name="BattlePlayer" parent="Players" instance=ExtResource("3_7sfm4")]
 layout_mode = 0
@@ -165,6 +98,144 @@ offset_left = 32.0
 offset_top = 118.0
 offset_right = 48.0
 offset_bottom = 134.0
+
+[node name="GUIMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bottom" type="HBoxContainer" parent="GUIMargin"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Enemies" parent="GUIMargin/Bottom" instance=ExtResource("2_8ha6l")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUIMargin/Bottom/Enemies"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIMargin/Bottom/Enemies/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="Label" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ENEMY"
+
+[node name="Label2" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ENEMY"
+
+[node name="Label3" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ENEMY"
+
+[node name="Players" parent="GUIMargin/Bottom" instance=ExtResource("2_8ha6l")]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUIMargin/Bottom/Players"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIMargin/Bottom/Players/MarginContainer"]
+layout_mode = 2
+
+[node name="BattlePlayerBar" parent="GUIMargin/Bottom/Players/MarginContainer/VBoxContainer" instance=ExtResource("4_mhv3b")]
+layout_mode = 2
+
+[node name="BattlePlayerBar2" parent="GUIMargin/Bottom/Players/MarginContainer/VBoxContainer" instance=ExtResource("4_mhv3b")]
+layout_mode = 2
+
+[node name="BattlePlayerBar3" parent="GUIMargin/Bottom/Players/MarginContainer/VBoxContainer" instance=ExtResource("4_mhv3b")]
+layout_mode = 2
+
+[node name="BattlePlayerBar4" parent="GUIMargin/Bottom/Players/MarginContainer/VBoxContainer" instance=ExtResource("4_mhv3b")]
+layout_mode = 2
+
+[node name="Options" parent="." instance=ExtResource("2_8ha6l")]
+custom_minimum_size = Vector2(54, 52)
+layout_mode = 2
+offset_left = 22.0
+offset_top = 184.0
+offset_right = 76.0
+offset_bottom = 236.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.0
+
+[node name="Options" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -5
+script = ExtResource("4_0npn6")
+
+[node name="Button" type="Button" parent="Options/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Button4")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Button2")
+text = "FIGHT"
+
+[node name="Button2" type="Button" parent="Options/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Button3")
+text = "MAGIC"
+
+[node name="Button3" type="Button" parent="Options/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Button2")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Button4")
+text = "ITEM"
+
+[node name="Button4" type="Button" parent="Options/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Button3")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Button")
+text = "DEFEND"
+
+[node name="MenuCursor" parent="." instance=ExtResource("8_mhv3b")]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 186.0
+offset_right = -230.0
+offset_bottom = -38.0
 
 [connection signal="buttonFocused" from="Options/Options" to="." method="_on_options_button_focused"]
 [connection signal="buttonPressed" from="Options/Options" to="." method="_on_options_button_pressed"]

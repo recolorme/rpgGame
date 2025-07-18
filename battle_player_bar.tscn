@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bka4ax6ube6a3"]
+
+[ext_resource type="PackedScene" uid="uid://hklpjakqt362" path="res://atb_bar.tscn" id="1_8u2c4"]
+
+[node name="BattlePlayerBar" type="HBoxContainer"]
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+text = "NAME"
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 2
+text = "999"
+
+[node name="Mana" type="Label" parent="."]
+layout_mode = 2
+text = "999"
+
+[node name="ATBBar" parent="." instance=ExtResource("1_8u2c4")]
+layout_mode = 2
