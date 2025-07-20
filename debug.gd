@@ -21,4 +21,5 @@ func _unhandled_input(event: InputEvent) -> void:
 				DisplayServer.window_set_mode(targetMode)
 
 func _on_viewport_gui_focus_changed(node: Control) -> void:
-	print(node)
+	#print(node)
+	pass
