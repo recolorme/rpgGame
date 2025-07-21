@@ -3,6 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://hklpjakqt362" path="res://atb_bar.tscn" id="1_8u2c4"]
 [ext_resource type="Script" uid="uid://lxw2dlaxol0r" path="res://battle_player_bar.gd" id="1_047ae"]
 
+[sub_resource type="Animation" id="Animation_ds20c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_c1e1j"]
 resource_name = "highlight"
 loop_mode = 1
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.533333)]
-}
-
-[sub_resource type="Animation" id="Animation_ds20c"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_46xdv"]

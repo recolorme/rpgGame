@@ -47,3 +47,7 @@ func _on_player_atb_ready(player: BattlePlayerBar) -> void:
 		_options_menu.button_focus(0)
 		
 	atb_queue.append(player)
+
+
+func _on_players_tree_exiting() -> void:
+	pass # Replace with function body.

@@ -6,9 +6,12 @@ signal buttonPressed(button: BaseButton)
 @export var autoWrap: bool = true
 
 var i: int = 0
+var exiting: bool = false
 
 #TODO: replace all blue text values with camelCase if possible
 func _ready() -> void:
+	tree_exiting.connect(_on_tree_exiting)
+	
 	#Connect to buttons
 	for button in getButtons():
 		button.focus_exited.connect(_on_Button_focus_exited.bind(button))
@@ -111,6 +114,9 @@ func buttonFocus(n: int = i) -> void:
 
 func _on_Button_focus_exited(button: BaseButton) -> void:
 	await get_tree().process_frame
+	if exiting:
+		return
+		
 	if not get_viewport().gui_get_focus_owner() in getButtons():
 		button_enable_focus(false)
 
@@ -120,3 +126,6 @@ func _onButtonFocused(button: BaseButton) -> void:
 
 func _onButtonPressed(button: BaseButton) -> void:
 	emit_signal("buttonPressed", button)
+
+func _on_tree_exiting() -> void:
+	exiting = true
