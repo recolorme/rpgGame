@@ -54,8 +54,10 @@ func _on_player_atb_ready(player: BattlePlayerBar) -> void:
 
 func _on_enemies_button_pressed(button: BaseButton) -> void:
 		#TODO Store event here.
-	advance_ath_queue()
+	#advance_ath_queue()
+	pass
 
 func _on_players_button_pressed(button: BaseButton) -> void:
 		#TODO Store event here.
-	advance_ath_queue()
+	#advance_ath_queue()
+	pass
