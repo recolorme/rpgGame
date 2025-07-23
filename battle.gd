@@ -4,7 +4,6 @@ enum States {
 	OPTIONS,
 	TARGETS,
 }
-
 var state: States = States.OPTIONS
 var atb_queue: Array = []
 var event_queue: Array = []
@@ -31,6 +30,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				state = States.OPTIONS
 				_options_menu.buttonFocus()
 
+func advance_atb_queue() -> void:
+	var current_player: BattlePlayerBar = atb_queue.pop_front()
+	current_player.reset()
+	atb_queue.front().highlight()
+
 func _onOptionsButtonFocused(button: BaseButton) -> void:
 	pass
 
@@ -48,6 +52,10 @@ func _on_player_atb_ready(player: BattlePlayerBar) -> void:
 		
 	atb_queue.append(player)
 
+func _on_enemies_button_pressed(button: BaseButton) -> void:
+		#TODO Store event here.
+	advance_ath_queue()
 
-func _on_players_tree_exiting() -> void:
-	pass # Replace with function body.
+func _on_players_button_pressed(button: BaseButton) -> void:
+		#TODO Store event here.
+	advance_ath_queue()

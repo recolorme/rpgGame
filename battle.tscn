@@ -36,6 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_0npn6")
+metadata/_edit_lock_ = true
 
 [node name="BattleEnemy" parent="Enemies" instance=ExtResource("4_lcjiy")]
 layout_mode = 0
@@ -70,6 +71,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_0npn6")
+metadata/_edit_lock_ = true
 
 [node name="BattlePlayer" parent="Players" instance=ExtResource("3_7sfm4")]
 layout_mode = 0
@@ -238,5 +240,3 @@ offset_right = -230.0
 offset_bottom = -38.0
 
 [connection signal="tree_exiting" from="GUIMargin/Bottom/Players" to="." method="_on_players_tree_exiting"]
-[connection signal="buttonFocused" from="Options/Options" to="." method="_on_options_button_focused"]
-[connection signal="buttonPressed" from="Options/Options" to="." method="_on_options_button_pressed"]
