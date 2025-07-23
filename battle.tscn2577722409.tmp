@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bic1j8ofgobyq"]
+[gd_scene load_steps=10 format=3 uid="uid://bic1j8ofgobyq"]
 
 [ext_resource type="Theme" uid="uid://djs17jejidaca" path="res://default_theme.tres" id="1_l2koo"]
 [ext_resource type="PackedScene" uid="uid://cmjrf0ne8f0i" path="res://window_default.tscn" id="2_8ha6l"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://spl0qg4x1eih" path="res://menu.gd" id="4_0npn6"]
 [ext_resource type="PackedScene" uid="uid://bmwyoey2t5cx2" path="res://battle_enemy.tscn" id="4_lcjiy"]
 [ext_resource type="PackedScene" uid="uid://bka4ax6ube6a3" path="res://battle_player_bar.tscn" id="4_mhv3b"]
+[ext_resource type="Script" uid="uid://dcx1wr4q4okh4" path="res://options.gd" id="7_mhv3b"]
 [ext_resource type="PackedScene" uid="uid://kbbtw168dn82" path="res://menu_cursor.tscn" id="8_mhv3b"]
 
 [node name="Battle" type="Control"]
@@ -197,7 +198,7 @@ offset_bottom = 9.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = -5
-script = ExtResource("4_0npn6")
+script = ExtResource("7_mhv3b")
 
 [node name="Button" type="Button" parent="Options/Options"]
 layout_mode = 2
@@ -244,3 +245,5 @@ offset_bottom = -38.0
 script = null
 
 [connection signal="tree_exiting" from="GUIMargin/Bottom/Players" to="." method="_on_players_tree_exiting"]
+[connection signal="buttonFocused" from="Options/Options" to="." method="_on_options_button_focused"]
+[connection signal="buttonPressed" from="Options/Options" to="." method="_on_options_button_pressed"]
