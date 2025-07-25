@@ -244,3 +244,5 @@ offset_bottom = -38.0
 
 [connection signal="button_pressed" from="Enemies" to="." method="_on_enemies_button_pressed"]
 [connection signal="button_pressed" from="Players" to="." method="_on_players_button_pressed"]
+[connection signal="button_focused" from="Options/Options" to="." method="_on_options_button_focused"]
+[connection signal="button_pressed" from="Options/Options" to="." method="_on_options_button_pressed"]
