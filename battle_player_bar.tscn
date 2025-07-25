@@ -20,6 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_c1e1j"]
 resource_name = "highlight"
+length = 0.6
 loop_mode = 1
 step = 0.0166667
 tracks/0/type = "value"
@@ -29,7 +30,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.533333)]
@@ -64,3 +65,5 @@ layout_mode = 2
 libraries = {
 &"": SubResource("AnimationLibrary_46xdv")
 }
+
+[connection signal="filled" from="ATBBar" to="." method="_on_atb_bar_filled"]

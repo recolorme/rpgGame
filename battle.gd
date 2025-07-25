@@ -4,6 +4,7 @@ enum States {
 	OPTIONS,
 	TARGETS,
 }
+
 var state: States = States.OPTIONS
 var atb_queue: Array = []
 var event_queue: Array = []
@@ -12,11 +13,10 @@ var event_queue: Array = []
 @onready var _options_menu: Menu = $Options/Options
 @onready var _enemies_menu: Menu = $Enemies
 @onready var _players_menu: Menu = $Players
-@onready var _players_infos: Array = 
+@onready var _players_infos: Array = $GUIMargin/Bottom/Players/MarginContainer/VBoxContainer.get_children()
 
 func _ready() -> void:
 	_options.hide()
-	_options_menu.button_pressed.connect(_on_options_button_pressed())
 	
 	for player in _players_infos:
 		player.atb_ready.connect(_on_player_atb_ready.bind(player))
@@ -46,7 +46,7 @@ func _on_options_button_pressed(button: BaseButton) -> void:
 
 func _on_player_atb_ready(player: BattlePlayerBar) -> void:
 	if atb_queue.is_empty():
-		player.highlight(true)
+		player.highlight()
 		_options.show()
 		_options_menu.button_focus(0)
 		
@@ -54,10 +54,9 @@ func _on_player_atb_ready(player: BattlePlayerBar) -> void:
 
 func _on_enemies_button_pressed(button: BaseButton) -> void:
 		#TODO Store event here.
-	#advance_ath_queue()
-	pass
+	state = States.OPTIONS
+	advance_atb_queue()
 
 func _on_players_button_pressed(button: BaseButton) -> void:
 		#TODO Store event here.
-	#advance_ath_queue()
-	pass
+	advance_atb_queue()

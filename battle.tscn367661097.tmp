@@ -241,6 +241,6 @@ offset_left = 10.0
 offset_top = 186.0
 offset_right = -230.0
 offset_bottom = -38.0
+script = null
 
-[connection signal="button_pressed" from="Enemies" to="." method="_on_enemies_button_pressed"]
-[connection signal="button_pressed" from="Players" to="." method="_on_players_button_pressed"]
+[connection signal="tree_exiting" from="GUIMargin/Bottom/Players" to="." method="_on_players_tree_exiting"]

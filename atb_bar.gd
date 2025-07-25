@@ -8,7 +8,7 @@ const SPEED_BASE: float = 0.25
 
 func _ready() -> void:
 	_anim.play("RESET")
-	value = randf_range(min_value,max_value * 0.75)
+	value = randf_range(min_value, max_value * 0.75)
 
 func reset() -> void:
 	modulate = Color.WHITE
@@ -20,9 +20,7 @@ func _process(_delta: float) -> void:
 	
 	if is_equal_approx(value, max_value):
 		#_anim.play("highlight")
-		modulate = Color("ffffff")
+		modulate = Color("34cf00")
 		set_process(false)
 		filled.emit()
-		#TODO begin animation.
-
-#TODO: video @ 33:46
+	
