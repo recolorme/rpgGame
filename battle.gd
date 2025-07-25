@@ -34,7 +34,8 @@ func advance_atb_queue() -> void:
 	var current_player: BattlePlayerBar = atb_queue.pop_front()
 	current_player.reset()
 	atb_queue.front().highlight()
-
+	_options_menu.button_focus()
+	
 func _on_options_button_focused(button: BaseButton) -> void:
 	pass
 
