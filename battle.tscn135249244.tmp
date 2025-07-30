@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bic1j8ofgobyq"]
+[gd_scene load_steps=9 format=3 uid="uid://bic1j8ofgobyq"]
 
 [ext_resource type="Theme" uid="uid://djs17jejidaca" path="res://default_theme.tres" id="1_l2koo"]
 [ext_resource type="PackedScene" uid="uid://cmjrf0ne8f0i" path="res://window_default.tscn" id="2_8ha6l"]
 [ext_resource type="Script" uid="uid://dt06awuyrvn0g" path="res://battle.gd" id="2_dw4jg"]
 [ext_resource type="PackedScene" uid="uid://bfa3nj3sh1b0h" path="res://battle_player.tscn" id="3_7sfm4"]
-[ext_resource type="Texture2D" uid="uid://c4hcsl4n6ka65" path="res://assets/bg.png" id="3_lcjiy"]
 [ext_resource type="Script" uid="uid://spl0qg4x1eih" path="res://menu.gd" id="4_0npn6"]
 [ext_resource type="PackedScene" uid="uid://bmwyoey2t5cx2" path="res://battle_enemy.tscn" id="4_lcjiy"]
 [ext_resource type="PackedScene" uid="uid://bka4ax6ube6a3" path="res://battle_player_bar.tscn" id="4_mhv3b"]
@@ -27,17 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.054902, 0.141176, 0.329412, 1)
-
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.344238, 0.414341, 0.734375, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_lcjiy")
+color = Color(0.0561, 0.142835, 0.33, 1)
 
 [node name="Enemies" type="Control" parent="."]
 layout_mode = 1
