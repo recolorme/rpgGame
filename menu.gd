@@ -112,7 +112,7 @@ func button_focus(n: int = i) -> void:
 	var button: BaseButton = get_buttons()[n]
 	button.grab_focus()
 
-func _on_Button_focus_exited(button: BaseButton) -> void:
+func _on_Button_focus_exited(_button: BaseButton) -> void:
 	await get_tree().process_frame
 	if exiting:
 		return

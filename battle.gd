@@ -32,24 +32,22 @@ func _unhandled_input(event: InputEvent) -> void:
 				_options_menu.button_focus()
 
 func advance_atb_queue() -> void:
+	state = States.OPTIONS
+	
 	if atb_queue.is_empty():
 		return
 		
 	var current_player: BattlePlayerBar = atb_queue.pop_front()
 	current_player.reset()
 	
-	var next_player: BattlePlayerBar = atb_queue.front()
-	if next_player:
-		next_player.highlight()
-		_options_menu.button_focus(0)
-	else:
+	if atb_queue.is_empty():
 		get_viewport().gui_release_focus()
 		_options.hide()
 		_cursor.hide()
-		
-	
-func _on_options_button_focused(button: BaseButton) -> void:
-	pass
+	else:
+		var next_player: BattlePlayerBar = atb_queue.front()
+		next_player.highlight()
+		_options_menu.button_focus(0)
 
 func _on_options_button_pressed(button: BaseButton) -> void:
 	match button.text:
@@ -66,8 +64,7 @@ func _on_player_atb_ready(player: BattlePlayerBar) -> void:
 	atb_queue.append(player)
 
 func _on_enemies_button_pressed(button: BaseButton) -> void:
-		#TODO Store event here.
-	state = States.OPTIONS
+	event_queue.append([])
 	advance_atb_queue()
 
 func _on_players_button_pressed(button: BaseButton) -> void:

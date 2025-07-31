@@ -13,4 +13,3 @@ func healhurt(value: int) -> void:
 	hp = clampi(hp, 0, hp_max)
 	change = hp - hp_start
 	emit_signal("hp_changed", hp, change)
-	
