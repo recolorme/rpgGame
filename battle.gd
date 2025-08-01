@@ -9,6 +9,12 @@ enum Actions{
 	FIGHT,
 }
 
+enum {
+	ACTOR,
+	TARGET,
+	ACTION,
+}
+
 var state: States = States.OPTIONS
 var atb_queue: Array = []
 var event_queue: Array = []
@@ -25,8 +31,8 @@ var player: BattleActor = null
 func _ready() -> void:
 	_options.hide()
 	
-	for player in _players_infos:
-		player.atb_ready.connect(_on_player_atb_ready.bind(player))
+	for player_info in _players_infos:
+		player_info.atb_ready.connect(_on_player_atb_ready.bind(player_info))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -53,8 +59,30 @@ func advance_atb_queue() -> void:
 	else:
 		var next_player_info_bar: PlayerInfoBar = atb_queue.front()
 		player = Data.party[next_player_info_bar.get_index()]
-		next_player_info_bar.highlight()
+		#print("yes")
 		_options_menu.button_focus(0)
+
+func run_event() -> void:
+	if event_queue.is_empty():
+		return
+		
+	var event: Array = event_queue.pop_front()
+	var actor: BattleActor = event[ACTOR]
+	var target: BattleActor = event[TARGET]
+	
+	match event[ACTION]:
+		Actions.FIGHT:
+			target.healhurt(-actor.strength)
+			pass
+		_:
+			pass
+			
+	run_event()
+
+func add_event(event: Array) -> void:
+	event_queue.append(event)
+	if event_queue.size() == 1:
+		run_event()
 
 func _on_options_button_pressed(button: BaseButton) -> void:
 	match button.text:
@@ -63,20 +91,21 @@ func _on_options_button_pressed(button: BaseButton) -> void:
 			state = States.TARGETS
 			_enemies_menu.button_focus()
 
-func _on_player_atb_ready(player: PlayerInfoBar) -> void:
+func _on_player_atb_ready(player_info: PlayerInfoBar) -> void:
 	if atb_queue.is_empty():
-		player.highlight()
+		player = Data.party[player_info.get_index()]
+		player_info.highlight()
 		_options.show()
 		_options_menu.button_focus(0)
 		
-	atb_queue.append(player)
+	atb_queue.append(player_info)
 
 func _on_enemies_button_pressed(button: EnemyButton) -> void:
 	var target: BattleActor = button.data
-	event_queue.append([player, target, action])
+	add_event([player, target, action])
 	advance_atb_queue()
 
 func _on_players_button_pressed(button: PlayerButton) -> void:
 	var target: BattleActor = button.data
-	event_queue.append([player, target, action])
+	add_event([player, target, action])
 	advance_atb_queue()

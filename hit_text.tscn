@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqmniwppwfj2g"]
+
+[ext_resource type="Script" uid="uid://dxqwjncgxc8f1" path="res://hit_text.gd" id="1_syykm"]
+
+[node name="HitText" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "000"
+script = ExtResource("1_syykm")
+
+[node name="Free" type="Timer" parent="."]
+
+[connection signal="timeout" from="Free" to="." method="_on_free_timeout"]
