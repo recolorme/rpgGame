@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bka4ax6ube6a3"]
 
 [ext_resource type="PackedScene" uid="uid://hklpjakqt362" path="res://atb_bar.tscn" id="1_8u2c4"]
-[ext_resource type="Script" uid="uid://lxw2dlaxol0r" path="res://battle_player_bar.gd" id="1_047ae"]
+[ext_resource type="Script" uid="uid://lxw2dlaxol0r" path="res://player_info_bar.gd" id="1_047ae"]
 
 [sub_resource type="Animation" id="Animation_ds20c"]
 length = 0.001
@@ -43,10 +43,13 @@ _data = {
 }
 
 [node name="BattlePlayerBar" type="HBoxContainer"]
-theme_override_constants/separation = 10
+offset_right = 158.0
+offset_bottom = 16.0
+theme_override_constants/separation = 7
 script = ExtResource("1_047ae")
 
 [node name="Name" type="Label" parent="."]
+custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
 text = "NAME"
 

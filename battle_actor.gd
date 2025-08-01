@@ -6,6 +6,9 @@ var name: String = "Not Set"
 var hp_max: int = 1
 var hp: int = hp_max
 
+func set_name_custom(value: String) -> void:
+	name = value
+
 func healhurt(value: int) -> void:
 	var hp_start: int = hp
 	var change: int = 0

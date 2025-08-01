@@ -1,0 +1,8 @@
+
+
+
+atb wait when actions are being performed
+atb wait when in options
+	add toggle later
+running thru event queue
+healhurt on fight

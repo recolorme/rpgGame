@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Debug="*res://debug.gd"
-Enemies="*res://enemies.gd"
+Data="*res://data.gd"
 
 [debug]
 

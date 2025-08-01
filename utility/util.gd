@@ -73,7 +73,7 @@ static func set_keys_to_names(dict: Dictionary) -> void:
 	#print(keys)
 	if dict[keys[0]] is RefCounted:
 		for key in keys:
-			dict[key].name = key
+			dict[key].set_name_custom(key)
 	else:
 		print("Error: Dictionary must have instanced references in it. Exiting convert_keys_to_names()...")
 
