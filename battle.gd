@@ -33,6 +33,10 @@ func _ready() -> void:
 	
 	for player_info in _players_infos:
 		player_info.atb_ready.connect(_on_player_atb_ready.bind(player_info))
+		
+	for enemy_button in _enemies_menu.get_buttons():
+		enemy_button.atb_ready.connect(_on_enemy_atb_ready.bind(enemy_button))
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -99,6 +103,10 @@ func _on_player_atb_ready(player_info: PlayerInfoBar) -> void:
 		_options_menu.button_focus(0)
 		
 	atb_queue.append(player_info)
+	
+func _on_enemy_atb_ready(enemy: BattleActor) -> void:
+	var target: BattleActor = Data.party.pick_random()
+	add_event([enemy, null, Actions.FIGHT])
 
 func _on_enemies_button_pressed(button: EnemyButton) -> void:
 	var target: BattleActor = button.data

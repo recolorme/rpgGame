@@ -16,3 +16,5 @@ layout_mode = 0
 offset_top = 34.0
 offset_right = 36.0
 offset_bottom = 42.0
+
+[connection signal="filled" from="ATBBar" to="." method="_on_atb_bar_filled"]

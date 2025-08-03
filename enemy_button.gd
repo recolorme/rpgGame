@@ -1,5 +1,7 @@
 class_name EnemyButton extends TextureButton
 
+signal atb_ready()
+
 const HIT_TEXT: PackedScene = preload("res://hit_text.tscn")
 
 var data: BattleActor = Data.enemies.RockSus.duplicate()
@@ -19,3 +21,6 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	if hp <= 0:
 		await get_tree().create_timer(1.0).timeout
 		queue_free()
+
+func _on_atb_bar_filled() -> void:
+	atb_ready.emit()

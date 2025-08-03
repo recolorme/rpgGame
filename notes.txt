@@ -6,3 +6,9 @@ atb wait when in options
 	add toggle later
 delay when running through events
 if target is defeated, choose random target
+
+down cursor on top of players for showing who is choosing options when atb ready
+
+able to target players in battle
+
+enemy battle actions queued up when they are atb ready
