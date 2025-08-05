@@ -106,7 +106,7 @@ func _on_player_atb_ready(player_info: PlayerInfoBar) -> void:
 	
 func _on_enemy_atb_ready(enemy: BattleActor) -> void:
 	var target: BattleActor = Data.party.pick_random()
-	add_event([enemy, null, Actions.FIGHT])
+	add_event([enemy, target, Actions.FIGHT]) #TODO choosing action
 
 func _on_enemies_button_pressed(button: EnemyButton) -> void:
 	var target: BattleActor = button.data
