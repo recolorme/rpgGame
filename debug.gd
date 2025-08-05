@@ -20,6 +20,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				var targetMode: int = DisplayServer.WINDOW_MODE_WINDOWED if isFullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN
 				DisplayServer.window_set_mode(targetMode)
 
-func _on_viewport_gui_focus_changed(node: Control) -> void:
+func _on_viewport_gui_focus_changed(_node: Control) -> void:
 	#print(node)
 	pass

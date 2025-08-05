@@ -36,7 +36,7 @@ func _ready() -> void:
 		
 	for enemy_button in _enemies_menu.get_buttons():
 		enemy_button.atb_ready.connect(_on_enemy_atb_ready.bind(enemy_button))
-
+		#17:20
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -74,6 +74,8 @@ func run_event() -> void:
 	var actor: BattleActor = event[ACTOR]
 	var target: BattleActor = event[TARGET]
 	
+	# TODO hp/valid actor/target checks
+	
 	match event[ACTION]:
 		Actions.FIGHT:
 			target.healhurt(-actor.strength)
@@ -109,9 +111,15 @@ func _on_enemy_atb_ready(enemy: BattleActor) -> void:
 	add_event([enemy, target, Actions.FIGHT]) #TODO choosing action
 
 func _on_enemies_button_pressed(button: EnemyButton) -> void:
-	var target: BattleActor = button.data
-	add_event([player, target, action])
-	advance_atb_queue()
+	if button is EnemyButton:
+		var target: BattleActor = button.data
+		add_event([player, target, action])
+		advance_atb_queue()
+	else:
+		push_warning("Pressed button is not EnemyButton: %s" % button)
+	#var target: BattleActor = button.data
+	#add_event([player, target, action])
+	#advance_atb_queue()
 
 func _on_players_button_pressed(button: PlayerButton) -> void:
 	var target: BattleActor = button.data
