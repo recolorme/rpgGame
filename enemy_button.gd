@@ -1,15 +1,13 @@
-class_name EnemyButton extends TextureButton
+class_name EnemyButton extends BattleActorButton
 
 signal atb_ready()
 
-const HIT_TEXT: PackedScene = preload("res://hit_text.tscn")
-
-var data: BattleActor = Data.enemies.RockSus.duplicate()
-
 @onready var _atb_bar: ATBBar = $ATBBar
 
-func _read() -> void:
+func _ready() -> void:
+	# TODO load data based on overworld tile/cohort 
 	# TODO load sprite
+	data = Data.enemies.RockSus.duplicate()
 	data.hp_changed.connect(_on_data_hp_changed)
 
 func _on_data_hp_changed(hp: int, change: int) -> void:
