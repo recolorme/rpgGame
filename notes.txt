@@ -12,3 +12,5 @@ down cursor on top of players for showing who is choosing options when atb ready
 able to target players in battle
 
 enemy battle actions queued up when they are atb ready
+
+make overworld soon...
