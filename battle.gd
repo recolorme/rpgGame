@@ -35,7 +35,7 @@ func _ready() -> void:
 		player_info.atb_ready.connect(_on_player_atb_ready.bind(player_info))
 		
 	for enemy_button in _enemies_menu.get_buttons():
-		enemy_button.atb_ready.connect(_on_enemy_atb_ready.bind(enemy_button))
+		enemy_button.atb_ready.connect(_on_enemy_atb_ready.bind(enemy_button.data))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
