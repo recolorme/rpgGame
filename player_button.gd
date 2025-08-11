@@ -8,4 +8,3 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	
 	if hp <= 0:
 		self_modulate = Color.BLACK
-		

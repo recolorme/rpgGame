@@ -18,5 +18,3 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	if hp <= 0:
 		await get_tree().create_timer(1.0).timeout
 		queue_free()
-		
-#TODO 19:33 in video

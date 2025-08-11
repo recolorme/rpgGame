@@ -65,6 +65,9 @@ func advance_atb_queue() -> void:
 		#print("yes")
 		_options_menu.button_focus(0)
 
+func wait(duration: float):
+	return await get_tree().create_timer(duration).timeout
+
 func run_event() -> void:
 	if event_queue.is_empty():
 		return
@@ -78,11 +81,11 @@ func run_event() -> void:
 	match event[ACTION]:
 		Actions.FIGHT:
 			target.healhurt(-actor.strength)
-			pass
 		_:
 			pass
-			
-	run_event()
+	
+	await wait(0.75)
+	run_event() #TODO 27:35
 
 func add_event(event: Array) -> void:
 	event_queue.append(event)
