@@ -8,7 +8,7 @@ var players: Dictionary = {
 	"RECO":BattleActor.new(48,4),
 	"WALU":BattleActor.new(32,2),
 	"<:3c":BattleActor.new(20),
-	"POOP":BattleActor.new(18)
+	"POOP":BattleActor.new(18),
 }
 
 var party: Array = players.values()

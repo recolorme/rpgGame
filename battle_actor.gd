@@ -1,6 +1,7 @@
 class_name BattleActor extends Resource
 
 signal hp_changed(hp, change)
+signal defeated()
 
 var name: String = "Not Set"
 var hp_max: int = 1
@@ -23,4 +24,13 @@ func healhurt(value: int) -> void:
 	hp += value
 	hp = clampi(hp, 0, hp_max)
 	change = hp - hp_start
-	emit_signal("hp_changed", hp, change)
+	hp_changed.emit(hp, change)
+	
+	if !has_hp():
+		defeated.emit()
+
+func has_hp() -> bool:
+	return hp > 0
+
+func can_act() -> bool:
+	return has_hp()

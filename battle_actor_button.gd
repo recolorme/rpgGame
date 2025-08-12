@@ -8,6 +8,7 @@ func set_data(_data: BattleActor) -> void:
 	data = _data
 	# TODO load sprite
 	data.hp_changed.connect(_on_data_hp_changed)
+	data.defeated.connect(_on_data_defeated)
 	
 func _on_data_hp_changed(hp: int, change: int) -> void:
 	var hit_text: Label = HIT_TEXT.instantiate()

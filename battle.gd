@@ -3,6 +3,8 @@ extends Control
 enum States {
 	OPTIONS,
 	TARGETS,
+	VICTORY,
+	GAMEOVER,
 }
 
 enum Actions{
@@ -32,11 +34,15 @@ var player: BattleActor = null
 func _ready() -> void:
 	_options.hide()
 	
+	# Connect players and enemies
+	# TODO 1:07:41
 	for player_info in _players_infos:
 		player_info.atb_ready.connect(_on_player_atb_ready.bind(player_info))
+		player_info.data.defeated.connect(_on_battle_actor_defeated.bind(player_info.data))
 		
 	for enemy_button in _enemies_menu.get_buttons():
 		enemy_button.atb_ready.connect(_on_enemy_atb_ready.bind(enemy_button.data))
+		enemy_button.data.defeated.connect(_on_battle_actor_defeated.bind(enemy_button.data))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -46,6 +52,38 @@ func _unhandled_input(event: InputEvent) -> void:
 			States.TARGETS:
 				state = States.OPTIONS
 				_options_menu.button_focus()
+
+func find_valid_target(target: BattleActor) -> BattleActor:
+	if target.has_hp():
+		return target
+	var target_is_friendly: bool = Data.party.has(target)
+	var target_buttons: Array = []
+	if target_is_friendly:
+		target_buttons = _players_menu.get_buttons()
+	else:
+		target_buttons = _enemies_menu.get_buttons()
+		
+	target = null
+	target_buttons.shuffle()
+	for i in range(target_buttons.size()):
+		var button: BattleActorButton = target_buttons[i]
+		var data: BattleActor = button.data
+		if data.has_hp():
+			target = data
+			break
+	
+	if target == null:
+		state = States.GAMEOVER if target_is_friendly else States.VICTORY
+	return target
+
+func end() -> void:
+	event_queue.clear()
+	# TODO actual battle end states
+	match state:
+		States.VICTORY:
+			print("wiener is you")
+		States.GAMEOVER:
+			print("loser loser loser")
 
 func advance_atb_queue() -> void:
 	state = States.OPTIONS
@@ -77,12 +115,24 @@ func run_event() -> void:
 	event_running = true
 	await get_tree().create_timer(0.5).timeout
 	
-	var event: Array = event_queue.pop_front() 
+	var event: Array = event_queue.pop_front()
 	var actor: BattleActor = event[ACTOR]
 	var target: BattleActor = event[TARGET]
 	
-	# TODO hp/valid actor/target checks
+	# skip event if actor can no longer act
+	if !actor.can_act():
+		run_event()
 	
+	# ensure target is valid
+	var target_is_friendly: bool = Data.party.has(target)
+	target = find_valid_target(target)
+		
+	# no valid target. one side has wwon
+	if target == null:
+		end()
+		return
+			
+	# perform action
 	match event[ACTION]:
 		Actions.FIGHT:
 			target.healhurt(-actor.strength)
@@ -127,3 +177,7 @@ func _on_players_button_pressed(button: PlayerButton) -> void:
 	var target: BattleActor = button.data
 	add_event([player, target, action])
 	advance_atb_queue()
+
+func _on_battle_actor_defeated(data: BattleActor) -> void:
+	if !find_valid_target(data):
+		end()
