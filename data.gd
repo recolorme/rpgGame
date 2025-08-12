@@ -5,10 +5,10 @@ var enemies: Dictionary = {
 }
 
 var players: Dictionary = {
-	"RECO":BattleActor.new(),
-	"WALU":BattleActor.new(),
-	"<:3c":BattleActor.new(),
-	"POOP":BattleActor.new()
+	"RECO":BattleActor.new(48,4),
+	"WALU":BattleActor.new(32,2),
+	"<:3c":BattleActor.new(20),
+	"POOP":BattleActor.new(18)
 }
 
 var party: Array = players.values()

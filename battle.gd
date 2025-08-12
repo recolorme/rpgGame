@@ -18,6 +18,7 @@ enum {
 var state: States = States.OPTIONS
 var atb_queue: Array = []
 var event_queue: Array = []
+var event_running: bool = false
 var action: Actions = Actions.FIGHT
 var player: BattleActor = null
 
@@ -66,13 +67,17 @@ func advance_atb_queue() -> void:
 		_options_menu.button_focus(0)
 
 func wait(duration: float):
-	return await get_tree().create_timer(duration).timeout
+	await get_tree().create_timer(duration).timeout
 
 func run_event() -> void:
 	if event_queue.is_empty():
+		event_running = false
 		return
-		
-	var event: Array = event_queue.pop_front()
+	
+	event_running = true
+	await get_tree().create_timer(0.5).timeout
+	
+	var event: Array = event_queue.pop_front() 
 	var actor: BattleActor = event[ACTOR]
 	var target: BattleActor = event[TARGET]
 	
@@ -84,12 +89,13 @@ func run_event() -> void:
 		_:
 			pass
 	
-	await wait(0.75)
-	run_event() #TODO 27:35
+	#await wait(0.75)
+	await get_tree().create_timer(1.25).timeout
+	run_event()
 
 func add_event(event: Array) -> void:
 	event_queue.append(event)
-	if event_queue.size() == 1:
+	if !event_running:
 		run_event()
 
 func _on_options_button_pressed(button: BaseButton) -> void:

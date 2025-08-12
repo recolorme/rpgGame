@@ -16,5 +16,6 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	super(hp, change)
 	
 	if hp <= 0:
+		_atb_bar.stop()
 		await get_tree().create_timer(1.0).timeout
 		queue_free()

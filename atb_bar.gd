@@ -15,12 +15,15 @@ func reset() -> void:
 	value = min_value
 	set_process(true)
 
+func stop() -> void:
+	set_process(false)
+
 func _process(_delta: float) -> void:
 	value += SPEED_BASE
 	
 	if is_equal_approx(value, max_value):
 		#_anim.play("highlight")
 		modulate = Color("34cf00")
-		set_process(false)
+		stop()
 		filled.emit()
 	
