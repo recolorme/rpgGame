@@ -16,3 +16,5 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	add_child(hit_text)
 	hit_text.position = Vector2(size.x * 0.5,-4)
 	
+func _on_data_defeated() -> void:
+	pass

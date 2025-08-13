@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://36n4oskaammn"]
+
+[ext_resource type="Texture2D" uid="uid://cielo54uvw5fe" path="res://down_cursor.tres" id="1_5hmv2"]
+[ext_resource type="Script" uid="uid://btsjhkhugorfh" path="res://down_cursor.gd" id="2_1nk34"]
+
+[node name="DownCursor" type="TextureRect"]
+offset_left = 16.0
+offset_right = 32.0
+offset_bottom = 16.0
+rotation = 1.5708
+texture = ExtResource("1_5hmv2")
+stretch_mode = 2
+script = ExtResource("2_1nk34")
+
+[node name="FrameAdvance" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="FrameAdvance" to="." method="_on_frame_advance_timeout"]

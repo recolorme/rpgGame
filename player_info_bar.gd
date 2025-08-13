@@ -15,7 +15,15 @@ func _ready() -> void:
 	_name.text = data.name
 	_health.text = str(data.hp)
 	_mana.text = str(data.mp)
+	data.hp_changed.connect(_on_data_hp_changed)
 
+func _on_data_hp_changed(hp: int, change: int) -> void:
+	_health.text = str(hp)
+	if hp == 0:
+		modulate = Color.DARK_RED
+		_atb.reset()
+		_atb.stop()
+		
 func highlight(on: bool = true) -> void:
 	var anim: String = "highlight" if on else "RESET"
 	_anim.play(anim)

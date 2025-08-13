@@ -1,12 +1,18 @@
 
 
-
-atb wait when actions are being performed
-atb wait when in options
+toggleable atb wait when in battle options
+	or only when choosing target in or in options sub menu, like items/magic
 	add toggle later
-delay when running through events
-if target is defeated, choose random target
-
-down cursor on top of players for showing who is choosing options when atb ready
 
 able to target players in battle
+
+player sprites
+
+animating actions and hits
+
+
+
+
+
+
+atb wait when actions are being performed
