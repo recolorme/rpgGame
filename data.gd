@@ -1,7 +1,8 @@
 extends Node
 
 var enemies: Dictionary = {
-	"RockSus": BattleActor.new()
+	"RockSus": BattleActor.new(),
+	"Igor": BattleActor.new(),
 }
 
 var players: Dictionary = {
@@ -14,6 +15,8 @@ var players: Dictionary = {
 var party: Array = players.values()
 
 func _init() -> void:
+	for player in party:
+		player.friendly = true
 	Util.set_keys_to_names(enemies)
 	Util.set_keys_to_names(players)
 	

@@ -9,6 +9,8 @@ var hp: int = hp_max
 var mp_max: int = 0
 var mp: int = mp_max
 var strength: int = 1
+var texture: Texture = null
+var friendly: bool = false
 
 func _init(_hp: int = hp_max, _strength: int = strength) -> void:
 	hp_max = _hp
@@ -17,6 +19,10 @@ func _init(_hp: int = hp_max, _strength: int = strength) -> void:
 
 func set_name_custom(value: String) -> void:
 	name = value
+	
+	if !friendly:
+		var name_formatted: String = name.to_lower().replace(" ", "_")
+		texture = load("res://assets/enemies" + name_formatted + ".png")
 
 func healhurt(value: int) -> void:
 	var hp_start: int = hp
