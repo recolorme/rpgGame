@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfa3nj3sh1b0h"]
 
-[ext_resource type="Texture2D" uid="uid://cskixyir5rhqe" path="res://assets/placeholderplayer.png" id="1_xl3td"]
+[ext_resource type="Texture2D" uid="uid://cauifflv67suy" path="res://assets/pengu.png" id="1_5r5wu"]
 [ext_resource type="Script" uid="uid://b6qbdn3x5112l" path="res://player_button.gd" id="2_5r5wu"]
 
 [node name="BattlePlayer" type="TextureButton"]
@@ -8,5 +8,5 @@ offset_left = 45.0
 offset_top = 63.0
 offset_right = 61.0
 offset_bottom = 79.0
-texture_normal = ExtResource("1_xl3td")
+texture_normal = ExtResource("1_5r5wu")
 script = ExtResource("2_5r5wu")

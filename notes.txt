@@ -8,11 +8,14 @@ able to target players in battle
 
 player sprites
 
-animating actions and hits
+additional animating of actions and hits
 
+items
 
+magic
 
+field menu
 
-
+field/overworld
 
 atb wait when actions are being performed

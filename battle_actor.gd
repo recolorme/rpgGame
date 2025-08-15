@@ -2,6 +2,7 @@ class_name BattleActor extends Resource
 
 signal hp_changed(hp, change)
 signal defeated()
+signal acting()
 
 var name: String = "Not Set"
 var hp_max: int = 1
@@ -22,8 +23,8 @@ func set_name_custom(value: String) -> void:
 	
 	if !friendly:
 		var name_formatted: String = name.to_lower().replace(" ", "_")
-		texture = load("res://assets/enemies" + name_formatted + ".png")
-
+		texture = load("res://assets/enemies/" + name_formatted + ".png") #might need to duplicate
+ 
 func healhurt(value: int) -> void:
 	var hp_start: int = hp
 	var change: int = 0
@@ -40,3 +41,13 @@ func has_hp() -> bool:
 
 func can_act() -> bool:
 	return has_hp()
+
+func act() -> void:
+	acting.emit()
+
+func duplicate_custom() -> BattleActor:
+	var dup: BattleActor = self.duplicate()
+	#dup.init(hp,strength) #TODO might need this. need to test
+	dup.name = name
+	dup.texture = texture
+	return dup

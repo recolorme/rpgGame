@@ -24,6 +24,7 @@ var event_running: bool = false
 var action: Actions = Actions.FIGHT
 var player: BattleActor = null
 
+@onready var _gui: Control = $GUIMargin
 @onready var _options: WindowDefault = $Options
 @onready var _options_menu: Menu = $Options/Options
 @onready var _enemies_menu: Menu = $Enemies
@@ -60,9 +61,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func find_valid_target(target: BattleActor) -> BattleActor:
 	if target.has_hp():
 		return target
-		
-	var target_is_friendly: bool = Data.party.has(target)
+	
 	var target_buttons: Array = []
+	var target_is_friendly: bool = target.friendly
 	if target_is_friendly:
 		target_buttons = _players_menu.get_buttons()
 	else:
@@ -83,6 +84,18 @@ func find_valid_target(target: BattleActor) -> BattleActor:
 
 func end() -> void:
 	event_queue.clear()
+	player_atb_queue.clear()
+	_cursor.hide()
+	_options.hide()
+	_down_cursor.hide()
+	await get_tree().create_timer(1.0).timeout
+	_gui.hide()
+
+	for player_info in _players_infos:
+		player_info.highlight(false)
+		player_info.reset()
+		player_info.stop()
+		
 	# TODO actual battle end states
 	match state:
 		States.VICTORY:
@@ -91,6 +104,8 @@ func end() -> void:
 			print("loser loser loser")
 
 func advance_atb_queue(remove_front: bool = true) -> void:
+	if state >= States.VICTORY:
+		return
 	state = States.OPTIONS
 	
 	if player_atb_queue.is_empty():
@@ -98,7 +113,7 @@ func advance_atb_queue(remove_front: bool = true) -> void:
 		
 	if remove_front:
 		var current_player_info_bar: PlayerInfoBar = player_atb_queue.pop_front()
-		current_player_info_bar.reset()
+		current_player_info_bar.highlight(false)
 	
 	if player_atb_queue.is_empty():
 		get_viewport().gui_release_focus()
@@ -113,7 +128,7 @@ func advance_atb_queue(remove_front: bool = true) -> void:
 		_options.show()
 		_options_menu.button_focus(0)
 		_down_cursor.show()
-		_down_cursor.global_position = _players_menu.get_buttons()[index].global_position + Vector2(16,-20)
+		_down_cursor.global_position = _players_menu.get_buttons()[index].global_position + Vector2(24,-20)
 
 func wait(duration: float):
 	await get_tree().create_timer(duration).timeout
@@ -126,6 +141,9 @@ func run_event() -> void:
 	event_running = true
 	await get_tree().create_timer(0.5).timeout
 	
+	if state >= States.VICTORY:
+		return
+	
 	var event: Array = event_queue.pop_front()
 	var actor: BattleActor = event[ACTOR]
 	var target: BattleActor = event[TARGET]
@@ -135,7 +153,6 @@ func run_event() -> void:
 		run_event()
 	
 	# ensure target is valid
-	var target_is_friendly: bool = Data.party.has(target)
 	target = find_valid_target(target)
 		
 	# no valid target. one side has wwon
@@ -144,6 +161,8 @@ func run_event() -> void:
 		return
 			
 	# perform action
+	actor.act()
+	await get_tree().create_timer(0.25).timeout
 	match event[ACTION]:
 		Actions.FIGHT:
 			target.healhurt(-actor.strength)
@@ -152,6 +171,16 @@ func run_event() -> void:
 	
 	#await wait(0.75)
 	await get_tree().create_timer(1.25).timeout
+	
+	if actor.friendly:
+		_players_infos[Data.party.find(actor)].reset()
+	else:
+		var enemies: Array = _enemies_menu.get_children()
+		for enemy in enemies:
+			if enemy.data == actor:
+				enemy.reset()
+				break
+				
 	run_event()
 
 func add_event(event: Array) -> void:

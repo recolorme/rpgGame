@@ -29,8 +29,10 @@ func highlight(on: bool = true) -> void:
 	_anim.play(anim)
 
 func reset() -> void:
-	highlight(false)
 	_atb.reset()
 
 func _on_atb_bar_filled() -> void:
 	atb_ready.emit()
+
+func stop() -> void:
+	_atb.stop()
