@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdwpt334wo0s5"]
+
+[ext_resource type="Texture2D" uid="uid://cauifflv67suy" path="res://assets/pengu.png" id="1_m0wi0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5u67"]
+
+[node name="Overworld" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_c5u67")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_m0wi0")

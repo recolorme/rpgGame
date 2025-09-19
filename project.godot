@@ -14,13 +14,13 @@ config/name="rpgGame"
 run/main_scene="uid://bic1j8ofgobyq"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="res://Battle/icon.svg"
 
 [autoload]
 
-Debug="*res://debug.gd"
-Globals="*res://globals.gd"
-Data="*res://data.gd"
+Debug="*res://Battle/debug.gd"
+Globals="*res://Battle/globals.gd"
+Data="*res://Battle/data.gd"
 
 [debug]
 

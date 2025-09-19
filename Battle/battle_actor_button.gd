@@ -1,6 +1,6 @@
 class_name BattleActorButton extends TextureButton
 
-const HIT_TEXT: PackedScene = preload("res://hit_text.tscn")
+const HIT_TEXT: PackedScene = preload("res://Battle/hit_text.tscn")
 
 const RECOIL: int = 8
 

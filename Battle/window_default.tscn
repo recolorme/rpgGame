@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmjrf0ne8f0i"]
 
 [ext_resource type="Texture2D" uid="uid://dr8pcv5hinps2" path="res://assets/textbox.png" id="1_nlite"]
-[ext_resource type="Script" uid="uid://cgm8a4yklmj21" path="res://window_default.gd" id="2_5xyfw"]
+[ext_resource type="Script" uid="uid://cgm8a4yklmj21" path="res://Battle/window_default.gd" id="2_5xyfw"]
 
 [node name="WindowDefault" type="NinePatchRect"]
 size_flags_horizontal = 3

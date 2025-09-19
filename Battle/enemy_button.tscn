@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmwyoey2t5cx2"]
 
 [ext_resource type="Texture2D" uid="uid://w4g2p3hgra43" path="res://assets/enemies/RockSus.PNG" id="1_j7mgt"]
-[ext_resource type="Script" uid="uid://eqrxxy54ug5k" path="res://enemy_button.gd" id="2_m8k6a"]
-[ext_resource type="PackedScene" uid="uid://hklpjakqt362" path="res://atb_bar.tscn" id="3_3rfcl"]
+[ext_resource type="Script" uid="uid://eqrxxy54ug5k" path="res://Battle/enemy_button.gd" id="2_m8k6a"]
+[ext_resource type="PackedScene" uid="uid://hklpjakqt362" path="res://Battle/atb_bar.tscn" id="3_3rfcl"]
 
 [node name="EnemyButton" type="TextureButton"]
 offset_right = 16.0

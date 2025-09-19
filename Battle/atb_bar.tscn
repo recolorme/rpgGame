@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://hklpjakqt362"]
 
-[ext_resource type="Script" uid="uid://gfv5kgskeu8c" path="res://atb_bar.gd" id="1_v1gex"]
+[ext_resource type="Script" uid="uid://gfv5kgskeu8c" path="res://Battle/atb_bar.gd" id="1_v1gex"]
 
 [sub_resource type="Animation" id="Animation_2ksh8"]
 length = 0.001
