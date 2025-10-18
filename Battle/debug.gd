@@ -6,11 +6,11 @@ func _ready() -> void:
 	if PRINT_CURRENT_FOCUS:
 		get_viewport().gui_focus_changed.connect(_on_viewport_gui_focus_changed)
 
-func _unhandled_input(event: InputEvent) -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	var tutorial_guy_is_getting_mad: InputEventKey = event
-	if event.is_pressed():
-		var key: int = tutorial_guy_is_getting_mad.keycode
+func _unhandled_input(event) -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	#var tutorial_guy_is_getting_mad: InputEventKey = event
+	if event.is_pressed() and event is not InputEventMouseButton:
+		var key: int = event.keycode
 		match key:
 			KEY_R:
 				get_tree().reload_current_scene()
