@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq0sv341gi18n"]
+
+[ext_resource type="Texture2D" uid="uid://by8oxw1tb2mfc" path="res://assets/miscellaneous/sign.png" id="1_o2s71"]
+[ext_resource type="Shape2D" uid="uid://bv8j1stxorj7w" path="res://assets/miscellaneous/signCollisionShape.tres" id="2_7ln17"]
+
+[node name="SIGN" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("1_o2s71")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="StaticBody2D"]
+shape = ExtResource("2_7ln17")
