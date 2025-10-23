@@ -9,6 +9,9 @@ enum States {
 
 enum Actions{
 	FIGHT,
+	SKILL,
+	ITEM,
+	DEFEND
 }
 
 enum {
@@ -166,6 +169,8 @@ func run_event() -> void:
 	match event[ACTION]:
 		Actions.FIGHT:
 			target.healhurt(-actor.strength)
+		Actions.DEFEND:
+			actor.defend(actor.defense)
 		_:
 			pass
 	
@@ -194,6 +199,15 @@ func _on_options_button_pressed(button: BaseButton) -> void:
 			action = Actions.FIGHT
 			state = States.TARGETS
 			_enemies_menu.button_focus()
+		"SKILL":
+			pass
+		"ITEM":
+			pass
+		"DEFEND":
+			action = Actions.DEFEND
+			state = States.OPTIONS
+			_options_menu.button_focus()
+			
 
 func _on_player_atb_ready(player_info: PlayerInfoBar) -> void:
 	player_atb_queue.append(player_info)

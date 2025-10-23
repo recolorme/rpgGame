@@ -26,10 +26,10 @@ func recoil() -> void:
 	tween = create_tween()
 	# start
 	tween.tween_property(self, "position:x", start_pos.x + (RECOIL * recoil_direction), 0.25).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(self, "self_modulate", Color.DARK_RED, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(self, "modulate", Color.DARK_RED, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	# end
 	tween.tween_property(self, "position:x", start_pos.x, 0.1).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(self, "self_modulate", Color.WHITE, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(self, "modulate", Color.WHITE, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	
 func action_slide() -> void:
 	if tween:
@@ -38,25 +38,57 @@ func action_slide() -> void:
 	tween.tween_property(self, "position:x", start_pos.x + (RECOIL * recoil_direction * -1), 0.25).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "position:x", start_pos.x, 0.1).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 
+func defend() -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	# start
+	tween.parallel().tween_property(self, "modulate", Color.CYAN, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	# end 
+	tween.parallel().tween_property(self, "modulate", Color.BLACK, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+
+func text_tween_up(value) -> void:
+	var textTween = create_tween()
+	textTween.tween_property(value, "position:y", value.position.y - 20, 0.5)
+	textTween.tween_property(value, "modulate:a", 0.0, 0.5)
+	textTween.finished.connect(func(): value.queue_free())
 
 func _on_data_hp_changed(hp: int, change: int) -> void:
 	var hit_text: Label = HIT_TEXT.instantiate()
 	hit_text.text = str(abs(change))
-	add_child(hit_text)
-	hit_text.position = Vector2(size.x * 0.5,-4)
-	
+	hit_text.modulate = Color.WHITE
+
+	# Add to the scene root instead of as a child of this button
+	get_tree().root.add_child(hit_text)
+
+	# Convert the position to global coordinates
+	var global_text_pos = global_position + Vector2(size.x * 0.5, -4)
+	hit_text.global_position = global_text_pos
+
 	if sign(change) == -1:
 		recoil()
-		
-	
+
 	#hit text tweening up
-	var textTween = create_tween()
-	textTween.tween_property(hit_text, "position:y", hit_text.position.y - 20, 0.5)
-	textTween.tween_property(hit_text, "modulate:a", 0.0, 0.5)
-	textTween.finished.connect(func(): hit_text.queue_free())
-	
+	text_tween_up(hit_text)
+
 	#player + enemy hurt tween
 	recoil()
+
+func _on_data_defend(defense: int, change: int) -> void:
+	var defend_text: Label = HIT_TEXT.instantiate().Color.BLUE
+	defend_text.text = str(abs(change))
+	add_child(defend_text)
+	defend_text.position = Vector2(size.x * 0.5,-4)
+
+	if sign(change) == -1:
+		defend()
+	pass
+
+	#hit text tweening up
+	text_tween_up(defend_text)
+	
+	#player + enemy hurt tween
+	defend()
 	
 	
 func _on_data_defeated() -> void:

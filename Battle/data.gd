@@ -1,16 +1,16 @@
 extends Node
 
 var enemies: Dictionary = {
-	"RockSus": BattleActor.new(),
-	"igor": BattleActor.new(),
-	"igorBIG": BattleActor.new(),
+	"RockSus": BattleActor.new(10,2), 
+	"igor": BattleActor.new(20,6), # TODO: inputing data doesnt reflect actual battles????????????
+	"igorBIG": BattleActor.new(20,6)
 }
 
 var players: Dictionary = {
 	"PENGU":BattleActor.new(48,4),
 	"PENPO":BattleActor.new(32,2),
-	"PENNY":BattleActor.new(20),
-	"PENIS":BattleActor.new(18),
+	"PENNY":BattleActor.new(20,1),
+	"PENIS":BattleActor.new(18,1),
 }
 
 var party: Array = players.values()
