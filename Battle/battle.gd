@@ -205,8 +205,9 @@ func _on_options_button_pressed(button: BaseButton) -> void:
 			pass
 		"DEFEND":
 			action = Actions.DEFEND
-			state = States.OPTIONS
-			_options_menu.button_focus()
+			advance_atb_queue()
+			#state = States.OPTIONS
+			#_options_menu.button_focus()
 			
 
 func _on_player_atb_ready(player_info: PlayerInfoBar) -> void:
