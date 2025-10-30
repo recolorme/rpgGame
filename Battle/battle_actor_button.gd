@@ -19,7 +19,7 @@ func set_data(_data: BattleActor) -> void:
 	data.hp_changed.connect(_on_data_hp_changed)
 	data.defeated.connect(_on_data_defeated)
 	data.acting.connect(_on_data_acting)
-	data.defend.connect(_on_data_defend)
+	#data.defend.connect(_on_data_defend)
 
 func recoil() -> void:
 	if tween:

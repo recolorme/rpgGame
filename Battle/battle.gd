@@ -204,7 +204,9 @@ func _on_options_button_pressed(button: BaseButton) -> void:
 		"ITEM":
 			pass
 		"DEFEND":
+			# you can copy this code block to other action buttons
 			action = Actions.DEFEND
+			add_event([player, player, action])
 			advance_atb_queue()
 			#state = States.OPTIONS
 			#_options_menu.button_focus()
