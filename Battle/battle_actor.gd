@@ -4,7 +4,7 @@ signal hp_changed(hp, damage)
 signal defense_changed(defense, damage)
 signal defeated()
 signal acting()
-#signal defending()
+signal defending()
 
 var name: String = "Not Set"
 var hp_max: int = 1

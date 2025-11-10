@@ -19,7 +19,7 @@ func set_data(_data: BattleActor) -> void:
 	data.hp_changed.connect(_on_data_hp_changed)
 	data.defeated.connect(_on_data_defeated)
 	data.acting.connect(_on_data_acting)
-	#data.defend.connect(_on_data_defend)
+	data.defending.connect(_on_data_defend)
 
 func recoil() -> void:
 	if tween:
@@ -43,10 +43,11 @@ func defend() -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()
+
 	# start
-	tween.parallel().tween_property(self, "modulate", Color.CYAN, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "modulate", Color.CYAN, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	# end 
-	tween.parallel().tween_property(self, "modulate", Color.BLACK, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "modulate", Color.BLACK, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func text_tween_up(value) -> void:
 	var textTween = create_tween()
@@ -88,7 +89,7 @@ func _on_data_defend(defense: int, change: int) -> void:
 	#hit text tweening up
 	text_tween_up(defend_text)
 	
-	#player + enemy hurt tween
+	#player + enemy defend
 	defend()
 	
 	
