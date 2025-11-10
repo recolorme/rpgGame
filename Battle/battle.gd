@@ -106,7 +106,7 @@ func end() -> void:
 		States.GAMEOVER:
 			print("loser loser loser")
 
-func advance_atb_queue(remove_front: bool = true) -> void:
+func advance_atb_queue(remove_front: bool = true) -> void: 
 	if state >= States.VICTORY:
 		return
 	state = States.OPTIONS
@@ -188,7 +188,7 @@ func run_event() -> void:
 				
 	run_event()
 
-func add_event(event: Array) -> void:
+func add_event(event: Array) -> void: # add an event to the ATB queue
 	event_queue.append(event)
 	if !event_running:
 		run_event()

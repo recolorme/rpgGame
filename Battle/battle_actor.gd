@@ -1,24 +1,26 @@
 class_name BattleActor extends Resource
 
-signal hp_changed(hp, change)
-signal defense_changed(defense, change)
+signal hp_changed(hp, damage)
+signal defense_changed(defense, damage)
 signal defeated()
 signal acting()
+#signal defending()
 
 var name: String = "Not Set"
 var hp_max: int = 1
 var hp: int = hp_max
 var mp_max: int = 0
 var mp: int = mp_max
-var strength: int = 4
-var defense: int = 0
+var strength: int = 4 # enemies taking this value?
+var defense: int = 2 # doesnt seem to work
 var texture: Texture = null
 var friendly: bool = false
 
-func _init(_hp: int = hp_max, _strength: int = strength) -> void:
+func _init(_hp: int = hp_max, _strength: int = strength, _defense: int = defense) -> void:
 	hp_max = _hp
 	hp = _hp
 	strength = _strength
+	defense = _defense
 
 func set_name_custom(value: String) -> void:
 	name = value
@@ -29,11 +31,11 @@ func set_name_custom(value: String) -> void:
  
 func healhurt(value: int) -> void:
 	var hp_start: int = hp
-	var change: int = 0
-	hp += value
+	var damage: int = 0
+	hp += value # value = actor's strength
 	hp = clampi(hp, 0, hp_max)
-	change = hp - hp_start
-	hp_changed.emit(hp, change)
+	damage = (hp + defense) - hp_start
+	hp_changed.emit(hp, damage)
 	
 	if !has_hp():
 		defeated.emit()
@@ -49,14 +51,15 @@ func act() -> void:
 
 func defend(value: int) -> void:
 	var defense_start: int = defense
-	var change: int = 0
-	defense += value
-	change = defense + defense_start
-	defense_changed.emit(defense, change)
+
+	defense+=3 # TODO: make it so defense is temporarily changed
+
+	#defense_changed.emit(defense, damage)
+
 
 func duplicate_custom() -> BattleActor:
 	var dup: BattleActor = self.duplicate()
-	#dup.init(hp,strength) #TODO might need this. need to test
+	dup._init(hp,strength,defense) 
 	dup.name = name
 	dup.texture = texture
 	return dup
