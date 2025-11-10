@@ -134,6 +134,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.17453292
 script = ExtResource("1_i1m7t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -151,3 +153,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_hgm6w")
 }
 speed_scale = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -2,8 +2,7 @@ class_name Player extends CharacterBody2D
 
 var cardinal_direction: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
-var move_speed: float = 100.0
-var diagonal_move_speed: float = sqrt(move_speed/2)
+var move_speed: float = 150.0
 var state: String = "idle"
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -16,15 +15,18 @@ func _ready():
 
 func _process(delta):
 	
-	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	#direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	#direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	
-	velocity = direction * move_speed
+	direction = Vector2( 
+		Input.get_axis("left","right"),
+		Input.get_axis("up","down")
+	).normalized()
 
+	velocity = direction * move_speed
 	
 	if SetState() == true or SetDirection() == true:
 		UpdateAnimation()
-
 	
 func _physics_process(delta):
 	move_and_slide()
@@ -41,12 +43,6 @@ func SetDirection() -> bool:
 		new_dir = Vector2.UP if direction.y < 0 else Vector2.DOWN
 	if new_dir == cardinal_direction:
 		return false
-	
-	if direction.y == 1 and direction.x == 0:
-		velocity = direction * diagonal_move_speed
-	elif direction.x == 1 and direction.y == 0:
-		velocity = direction * diagonal_move_speed
-	
 
 	cardinal_direction = new_dir
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
