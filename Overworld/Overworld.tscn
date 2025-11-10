@@ -6,12 +6,20 @@
 [node name="Overworld" type="Node2D"]
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -260.0
-offset_top = -497.0
-offset_right = 508.0
-offset_bottom = 527.0
+[node name="Area2D" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Area2D"]
+offset_left = -269.0
+offset_top = -500.0
+offset_right = 499.0
+offset_bottom = 524.0
 texture = ExtResource("1_c5u67")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-41, 99)
+polygon = PackedVector2Array(12, 11, 66, 18, 145, -4, 135, -49, 85, -45, 75, 7, 98, -11)
 
 [node name="Player" parent="." instance=ExtResource("1_m0wi0")]
 position = Vector2(122, 117)
