@@ -45,9 +45,9 @@ func defend() -> void:
 	tween = create_tween()
 
 	# start
-	tween.tween_property(self, "modulate", Color.CYAN, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "modulate", Color.CYAN, 1.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	# end 
-	tween.tween_property(self, "modulate", Color.BLACK, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func text_tween_up(value) -> void:
 	var textTween = create_tween()
@@ -60,42 +60,40 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	hit_text.text = str(abs(change))
 	hit_text.modulate = Color.WHITE
 
-	# Add to the scene root instead of as a child of this button
+	# add to the scene root instead of as a child of this button
 	get_tree().root.add_child(hit_text)
 
-	# Convert the position to global coordinates
+	# convert the position to global coordinates
 	var global_text_pos = global_position + Vector2(size.x * 0.5, -4)
 	hit_text.global_position = global_text_pos
 
 	if sign(change) == -1:
 		recoil()
 
-	#hit text tweening up
+	# hit text tweening up
 	text_tween_up(hit_text)
 
-	#player + enemy hurt tween
+	# player + enemy hurt tween
 	recoil()
 
 func _on_data_defend(defense: int, change: int) -> void:
-	var defend_text: Label = HIT_TEXT.instantiate().Color.BLUE
+	var defend_text: Label = HIT_TEXT.instantiate()
 	defend_text.text = str(abs(change))
+	defend_text.modulate = Color.BLUE
 	add_child(defend_text)
-	defend_text.position = Vector2(size.x * 0.5,-4)
+	#defend_text.position = Vector2(size.x * 0.5, -4)
 
 	if sign(change) == -1:
 		defend()
-	pass
 
-	#hit text tweening up
+	# hit text tweening up
 	text_tween_up(defend_text)
 	
-	#player + enemy defend
+	# player + enemy defend
 	defend()
-	
 	
 func _on_data_defeated() -> void:
 	pass
-
 
 func _on_data_acting() -> void:
 	action_slide()

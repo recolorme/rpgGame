@@ -20,17 +20,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l2koo")
 script = ExtResource("2_dw4jg")
+metadata/_edit_lock_ = true
 
-[node name="BG" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.054902, 0.141176, 0.329412, 1)
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ol6im")
+metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Control" parent="."]
 layout_mode = 1
@@ -89,32 +82,48 @@ script = ExtResource("4_0npn6")
 metadata/_edit_lock_ = true
 
 [node name="PlayerButton" parent="Players" instance=ExtResource("3_7sfm4")]
-layout_mode = 0
-offset_left = 68.0
-offset_top = 45.0
-offset_right = 68.0
-offset_bottom = 45.0
+layout_mode = 1
+anchor_left = 0.26171875
+anchor_top = 0.1875
+anchor_right = 0.38671875
+anchor_bottom = 0.32083333
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerButton2" parent="Players" instance=ExtResource("3_7sfm4")]
-layout_mode = 0
+layout_mode = 1
+anchor_left = -0.01171875
+anchor_right = 0.11328125
 offset_left = 55.0
 offset_top = 75.0
 offset_right = 55.0
 offset_bottom = 75.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerButton3" parent="Players" instance=ExtResource("3_7sfm4")]
 layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 41.0
 offset_top = 107.0
 offset_right = 41.0
 offset_bottom = 107.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerButton4" parent="Players" instance=ExtResource("3_7sfm4")]
 layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 29.0
 offset_top = 139.0
 offset_right = 29.0
 offset_bottom = 139.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="GUIMargin" type="MarginContainer" parent="."]
 layout_mode = 1

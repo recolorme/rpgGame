@@ -188,7 +188,10 @@ func run_event() -> void:
 				
 	run_event()
 
-func add_event(event: Array) -> void: # add an event to the ATB queue
+
+## adds an event to the ATB queue (self, target, action)
+func add_event(event: Array) -> void: 
+
 	event_queue.append(event)
 	if !event_running:
 		run_event()

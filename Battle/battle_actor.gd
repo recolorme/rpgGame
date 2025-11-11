@@ -1,10 +1,10 @@
 class_name BattleActor extends Resource
 
 signal hp_changed(hp, damage)
-signal defense_changed(defense, damage)
+#signal defense_changed(defense, damage)
 signal defeated()
 signal acting()
-signal defending()
+signal defending(hp, defense)
 
 var name: String = "Not Set"
 var hp_max: int = 1
@@ -52,9 +52,12 @@ func act() -> void:
 func defend(value: int) -> void:
 	var defense_start: int = defense
 
-	defense+=3 # TODO: make it so defense is temporarily changed
+	defense += 3 # TODO: make it so defense is temporarily changed
+	defending.emit(hp, defense)
 
-	#defense_changed.emit(defense, damage)
+	if can_act():
+		defense = defense_start
+		defending.emit(hp, defense)
 
 
 func duplicate_custom() -> BattleActor:
