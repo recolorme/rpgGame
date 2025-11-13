@@ -52,6 +52,7 @@ func _ready() -> void:
 		enemy_button.atb_ready.connect(_on_enemy_atb_ready.bind(data))
 		data.defeated.connect(_on_battle_actor_defeated.bind(data))
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		match state:
@@ -60,6 +61,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			States.TARGETS:
 				state = States.OPTIONS
 				_options_menu.button_focus()
+
 
 func find_valid_target(target: BattleActor) -> BattleActor:
 	if target.has_hp():
@@ -85,6 +87,7 @@ func find_valid_target(target: BattleActor) -> BattleActor:
 		state = States.GAMEOVER if target_is_friendly else States.VICTORY
 	return target
 
+
 func end() -> void:
 	event_queue.clear()
 	player_atb_queue.clear()
@@ -105,6 +108,7 @@ func end() -> void:
 			print("wiener is you")
 		States.GAMEOVER:
 			print("loser loser loser")
+
 
 func advance_atb_queue(remove_front: bool = true) -> void: 
 	if state >= States.VICTORY:
@@ -133,8 +137,10 @@ func advance_atb_queue(remove_front: bool = true) -> void:
 		_down_cursor.show()
 		_down_cursor.global_position = _players_menu.get_buttons()[index].global_position + Vector2(24,-20)
 
+
 func wait(duration: float):
 	await get_tree().create_timer(duration).timeout
+
 
 func run_event() -> void:
 	if event_queue.is_empty():
@@ -189,12 +195,14 @@ func run_event() -> void:
 	run_event()
 
 
+
 ## adds an event to the ATB queue (self, target, action)
 func add_event(event: Array) -> void: 
 
 	event_queue.append(event)
 	if !event_running:
 		run_event()
+
 
 func _on_options_button_pressed(button: BaseButton) -> void:
 	match button.text:
@@ -220,19 +228,23 @@ func _on_player_atb_ready(player_info: PlayerInfoBar) -> void:
 	if player_atb_queue.size() == 1:
 		advance_atb_queue(false)
 	
+
 func _on_enemy_atb_ready(enemy: BattleActor) -> void:
 	var target: BattleActor = Data.party.pick_random()
 	add_event([enemy, target, Actions.FIGHT]) #TODO choosing action
+
 
 func _on_enemies_button_pressed(button: EnemyButton) -> void:
 	var target: BattleActor = button.data
 	add_event([player, target, action])
 	advance_atb_queue()
 
+
 func _on_players_button_pressed(button: PlayerButton) -> void:
 	var target: BattleActor = button.data
 	add_event([player, target, action])
 	advance_atb_queue()
+
 
 func _on_battle_actor_defeated(data: BattleActor) -> void:
 	if !find_valid_target(data):
