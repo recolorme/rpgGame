@@ -191,7 +191,7 @@ func run_event() -> void:
 			if enemy.data == actor:
 				enemy.reset()
 				break
-				
+
 	run_event()
 
 

@@ -3,10 +3,9 @@ class_name BattleActor extends Resource
 signal atb_ready()
 
 signal hp_changed(hp, damage, defense)
-#signal defense_changed(defense, damage)
 signal defeated()
 signal acting()
-signal defending(hp, defense)
+signal defending(defense, defense_start)
 
 var name: String = "Not Set"
 var hp_max: int = 1
@@ -58,16 +57,17 @@ func act() -> void:
 
 
 ## defense equation for temporary boost 
-func defend(value: int) -> void:
+func defend(actor_defense: int) -> void:
 	var defense_start: int = defense
 
-	defense += value
-	defending.emit(hp, defense)
+	defense += floor(actor_defense / 2)
+	defending.emit(defense, defense_start)
 
-	# await atb_ready
+	await atb_ready
+	defense = defense_start
+	defending.emit(defense, defense_start)
 
-	# defense = defense_start
-	# defending.emit(null, null, defense)
+
 
 
 func duplicate_custom() -> BattleActor:

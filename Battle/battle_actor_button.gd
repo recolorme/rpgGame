@@ -78,14 +78,14 @@ func _on_data_hp_changed(_hp: int, change: int, _defense: int) -> void:
 	recoil()
 
 ## 
-func _on_data_defend(_defense: int, change: int) -> void:
+func _on_data_defend(defense: int, defense_start: int) -> void:
 	var defend_text: Label = HIT_TEXT.instantiate()
-	defend_text.text = str(abs(change))
+	defend_text.text = str(abs(defense - defense_start))
 	defend_text.modulate = Color.BLUE
 	add_child(defend_text)
 	#defend_text.position = Vector2(size.x * 0.5, -4)
-
-	if sign(change) == -1:
+	
+	if sign(defense) == -1:
 		defend()
 
 	# hit text tweening up
