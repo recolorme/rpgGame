@@ -56,7 +56,7 @@ func text_tween_up(value) -> void:
 	textTween.tween_property(value, "modulate:a", 0.0, 0.5)
 	textTween.finished.connect(func(): value.queue_free())
 
-func _on_data_hp_changed(hp: int, change: int) -> void:
+func _on_data_hp_changed(_hp: int, change: int, _defense: int) -> void:
 	var hit_text: Label = HIT_TEXT.instantiate()
 	hit_text.text = str(abs(change))
 	hit_text.modulate = Color.WHITE
@@ -78,7 +78,7 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	recoil()
 
 ## 
-func _on_data_defend(defense: int, change: int) -> void:
+func _on_data_defend(_defense: int, change: int) -> void:
 	var defend_text: Label = HIT_TEXT.instantiate()
 	defend_text.text = str(abs(change))
 	defend_text.modulate = Color.BLUE

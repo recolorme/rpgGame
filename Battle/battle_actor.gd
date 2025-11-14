@@ -2,11 +2,11 @@ class_name BattleActor extends Resource
 
 signal atb_ready()
 
-signal hp_changed(hp, damage)
+signal hp_changed(hp, damage, defense)
 #signal defense_changed(defense, damage)
 signal defeated()
 signal acting()
-signal defending(hp,defense)
+signal defending(hp, defense)
 
 var name: String = "Not Set"
 var hp_max: int = 1
@@ -37,9 +37,12 @@ func healhurt(actor_strength: int, target_defense: int) -> void:
 	var damage: int = 0
 
 	hp += actor_strength 
+	hp += target_defense
+	
 	hp = clampi(hp, 0, hp_max)
-	damage = (hp + target_defense) - hp_start
-	hp_changed.emit(hp, damage)
+	damage = hp - hp_start
+
+	hp_changed.emit(hp, damage, target_defense)
 	
 	if !has_hp():
 		defeated.emit()
