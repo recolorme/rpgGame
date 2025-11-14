@@ -1,10 +1,12 @@
 class_name BattleActor extends Resource
 
+signal atb_ready()
+
 signal hp_changed(hp, damage)
 #signal defense_changed(defense, damage)
 signal defeated()
 signal acting()
-signal defending(hp, defense)
+signal defending(hp,defense)
 
 var name: String = "Not Set"
 var hp_max: int = 1
@@ -28,13 +30,15 @@ func set_name_custom(value: String) -> void:
 	if !friendly:
 		var name_formatted: String = name.to_lower().replace(" ", "_")
 		texture = load("res://assets/enemies/" + name_formatted + ".png") #might need to duplicate
- 
-func healhurt(value: int) -> void:
+
+## inflicts damage onto others 
+func healhurt(actor_strength: int, target_defense: int) -> void:
 	var hp_start: int = hp
 	var damage: int = 0
-	hp += value # value = actor's strength
+
+	hp += actor_strength 
 	hp = clampi(hp, 0, hp_max)
-	damage = (hp + defense) - hp_start
+	damage = (hp + target_defense) - hp_start
 	hp_changed.emit(hp, damage)
 	
 	if !has_hp():
@@ -49,15 +53,18 @@ func can_act() -> bool:
 func act() -> void:
 	acting.emit()
 
+
+## defense equation for temporary boost 
 func defend(value: int) -> void:
 	var defense_start: int = defense
 
-	defense += 3 # TODO: make it so defense is temporarily changed
+	defense += value
 	defending.emit(hp, defense)
 
-	if can_act():
-		defense = defense_start
-		defending.emit(hp, defense)
+	# await atb_ready
+
+	# defense = defense_start
+	# defending.emit(null, null, defense)
 
 
 func duplicate_custom() -> BattleActor:

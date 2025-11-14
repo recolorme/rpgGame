@@ -39,6 +39,7 @@ func action_slide() -> void:
 	tween.tween_property(self, "position:x", start_pos.x + (RECOIL * recoil_direction * -1), 0.25).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "position:x", start_pos.x, 0.1).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 
+## defense animation
 func defend() -> void:
 	if tween:
 		tween.kill()
@@ -76,6 +77,7 @@ func _on_data_hp_changed(hp: int, change: int) -> void:
 	# player + enemy hurt tween
 	recoil()
 
+## 
 func _on_data_defend(defense: int, change: int) -> void:
 	var defend_text: Label = HIT_TEXT.instantiate()
 	defend_text.text = str(abs(change))

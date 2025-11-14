@@ -174,7 +174,7 @@ func run_event() -> void:
 	await get_tree().create_timer(0.25).timeout
 	match event[ACTION]:
 		Actions.FIGHT:
-			target.healhurt(-actor.strength)
+			target.healhurt(-actor.strength, target.defense)
 		Actions.DEFEND:
 			actor.defend(actor.defense)
 		_:
