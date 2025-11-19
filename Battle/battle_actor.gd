@@ -1,7 +1,5 @@
 class_name BattleActor extends Resource
 
-signal atb_ready()
-
 signal hp_changed(hp, damage, defense)
 signal defeated()
 signal acting()
@@ -14,6 +12,7 @@ var mp_max: int = 0
 var mp: int = mp_max
 var strength: int = 69
 var defense: int = 67
+var defense_start: int = 0 
 var texture: Texture = null
 var friendly: bool = false
 var defense_temp_boost: bool = false
@@ -23,6 +22,7 @@ func _init(_hp: int = hp_max, _strength: int = strength, _defense: int = defense
 	hp = _hp
 	strength = _strength
 	defense = _defense
+	defense_start = _defense
 
 func set_name_custom(value: String) -> void:
 	name = value
@@ -49,6 +49,7 @@ func healhurt(actor_strength: int, target_defense: int) -> void:
 
 	if defense_temp_boost:
 		defense = defense_start
+		defense_temp_boost = false
 
 
 func has_hp() -> bool:
@@ -63,10 +64,10 @@ func act() -> void:
 
 ## defense equation for temporary boost 
 func defend(actor_defense: int) -> void:
-	var defense_start: int = defense
+	var defense_begin: int = defense
 
 	defense += floor(actor_defense / 2)
-	defending.emit(defense, defense_start)
+	defending.emit(defense, defense_begin)
 	defense_temp_boost = true
 	
 	# await atb_ready
