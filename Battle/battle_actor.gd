@@ -12,10 +12,11 @@ var hp_max: int = 1
 var hp: int = hp_max
 var mp_max: int = 0
 var mp: int = mp_max
-var strength: int = 4 # enemies taking this value?
-var defense: int = 2 # doesnt seem to work
+var strength: int = 69
+var defense: int = 67
 var texture: Texture = null
 var friendly: bool = false
+var defense_temp_boost: bool = false
 
 func _init(_hp: int = hp_max, _strength: int = strength, _defense: int = defense) -> void:
 	hp_max = _hp
@@ -46,6 +47,10 @@ func healhurt(actor_strength: int, target_defense: int) -> void:
 	if !has_hp():
 		defeated.emit()
 
+	if defense_temp_boost:
+		defense = defense_start
+
+
 func has_hp() -> bool:
 	return hp > 0
 
@@ -62,12 +67,11 @@ func defend(actor_defense: int) -> void:
 
 	defense += floor(actor_defense / 2)
 	defending.emit(defense, defense_start)
-
-	await atb_ready
-	defense = defense_start
-	defending.emit(defense, defense_start)
-
-
+	defense_temp_boost = true
+	
+	# await atb_ready
+	# defense = defense_start
+	# defending.emit(defense, defense_start)
 
 
 func duplicate_custom() -> BattleActor:
