@@ -37,9 +37,9 @@ func SetDirection() -> bool:
 	if direction == Vector2.ZERO: # Stands still 
 		return false
 
-	if direction.y == 0:
+	if abs(direction.y) == 0:
 		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT 
-	elif direction.x == 0:
+	elif abs(direction.x) == 0:
 		new_dir = Vector2.UP if direction.y < 0 else Vector2.DOWN
 	if new_dir == cardinal_direction:
 		return false
