@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bappyg3rx3k14"]
+[gd_scene load_steps=13 format=3 uid="uid://bappyg3rx3k14"]
 
 [ext_resource type="Texture2D" uid="uid://cauifflv67suy" path="res://assets/pengu.png" id="1_hic56"]
 [ext_resource type="Script" uid="uid://bx2i3d0xvepme" path="res://Overworld/player.gd" id="1_i1m7t"]
+[ext_resource type="AudioStream" uid="uid://b6e53ynr065u8" path="res://walking_snow-00.wav" id="3_fh1xq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c5u67"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh1xq"]
+size = Vector2(19, 15)
 
 [sub_resource type="Animation" id="Animation_i1m7t"]
 length = 0.001
@@ -139,7 +141,8 @@ wall_min_slide_angle = 0.17453292
 script = ExtResource("1_i1m7t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_c5u67")
+position = Vector2(-0.5, -2.5)
+shape = SubResource("RectangleShape2D_fh1xq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
@@ -155,3 +158,6 @@ libraries = {
 speed_scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fh1xq")

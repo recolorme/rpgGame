@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdwpt334wo0s5"]
+[gd_scene load_steps=5 format=3 uid="uid://cdwpt334wo0s5"]
 
 [ext_resource type="Texture2D" uid="uid://cs7oqe3l4df5e" path="res://assets/overworld_bg.png" id="1_c5u67"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="1_m0wi0"]
+[ext_resource type="PackedScene" uid="uid://f7vmuwfukbqs" path="res://Overworld/enemy_spawner.tscn" id="3_68let"]
+[ext_resource type="PackedScene" uid="uid://clgtpjlscnpwt" path="res://Overworld/basic_enemy.tscn" id="4_4rymo"]
 
 [node name="Overworld" type="Node2D"]
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = -2
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Area2D"]
@@ -19,7 +22,14 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(-41, 99)
-polygon = PackedVector2Array(12, 11, 66, 18, 145, -4, 135, -49, 85, -45, 75, 7, 98, -11)
+polygon = PackedVector2Array(189, 78, 216, 90, 239, 76, 320, -5, 270, -1, 235, -6, 189, 4)
 
 [node name="Player" parent="." instance=ExtResource("1_m0wi0")]
+z_index = 2
 position = Vector2(122, 117)
+
+[node name="Enemy Spawner" parent="." instance=ExtResource("3_68let")]
+position = Vector2(88, -66)
+
+[node name="Enemy" parent="." instance=ExtResource("4_4rymo")]
+position = Vector2(-76, -56)

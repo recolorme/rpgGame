@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 var cardinal_direction: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
-var move_speed: float = 150.0
+var speed: float = 150.0 
 var state: String = "idle"
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -14,22 +14,18 @@ func _ready():
 
 
 func _process(delta):
-	
-	#direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	#direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	
 	direction = Vector2( 
 		Input.get_axis("left","right"),
 		Input.get_axis("up","down")
 	).normalized()
 
-	velocity = direction * move_speed
+	velocity = direction * speed
 	
 	if SetState() == true or SetDirection() == true:
 		UpdateAnimation()
 	
 func _physics_process(delta):
-	move_and_slide()
+	move_and_slide()	
 	
 func SetDirection() -> bool: 
 	var new_dir: Vector2 = cardinal_direction

@@ -66,8 +66,9 @@ func act() -> void:
 func defend(actor_defense: int) -> void:
 	var defense_begin: int = defense
 
-	defense += floor(actor_defense / 2)
-	defending.emit(defense, defense_begin)
+	if !defense_temp_boost:
+		defense += floor(actor_defense / 2)
+		defending.emit(defense, defense_begin)
 	defense_temp_boost = true
 	
 	# await atb_ready

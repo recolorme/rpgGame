@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://clgtpjlscnpwt"]
+
+[ext_resource type="Texture2D" uid="uid://1l5teh2lbqco" path="res://assets/freddy_fazpolarbear.png" id="1_8a1io"]
+[ext_resource type="Script" uid="uid://b4iv1yvhj71dk" path="res://Overworld/basic_enemy.gd" id="1_yudy4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oum5w"]
+size = Vector2(12, 13)
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_yudy4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8a1io")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -21)
+polygon = PackedVector2Array(0, 6, 10, 11, 0, 16, -10, 11)
+
+[node name="Interact" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_oum5w")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Interact" to="." method="_on_interact_body_entered"]

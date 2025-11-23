@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://f7vmuwfukbqs"]
+
+[ext_resource type="Script" uid="uid://d2rftvb24arbb" path="res://Overworld/enemy_spawner.gd" id="1_jhubj"]
+[ext_resource type="Texture2D" uid="uid://b8jm2psg61jdu" path="res://assets/placeholderenemy.png" id="2_jhubj"]
+
+[node name="Enemy Spawner" type="Marker2D"]
+z_index = 1
+script = ExtResource("1_jhubj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jhubj")
+
+[node name="Timer" type="Timer" parent="."]
