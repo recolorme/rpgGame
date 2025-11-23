@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bappyg3rx3k14"]
+[gd_scene load_steps=14 format=3 uid="uid://bappyg3rx3k14"]
 
 [ext_resource type="Texture2D" uid="uid://cauifflv67suy" path="res://assets/pengu.png" id="1_hic56"]
 [ext_resource type="Script" uid="uid://bx2i3d0xvepme" path="res://Overworld/player.gd" id="1_i1m7t"]
-[ext_resource type="AudioStream" uid="uid://b6e53ynr065u8" path="res://walking_snow-00.wav" id="3_fh1xq"]
+[ext_resource type="AudioStream" uid="uid://b6e53ynr065u8" path="res://assets/sfx/walking_snow-00.wav" id="3_fh1xq"]
+[ext_resource type="Texture2D" uid="uid://dr8pcv5hinps2" path="res://assets/textbox.png" id="4_hgm6w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh1xq"]
 size = Vector2(19, 15)
@@ -161,3 +162,9 @@ speed_scale = 2.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_fh1xq")
+
+[node name="interactionHint" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-0.6250001, -31.374998)
+scale = Vector2(0.90625, 0.90625066)
+texture = ExtResource("4_hgm6w")

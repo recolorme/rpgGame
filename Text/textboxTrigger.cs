@@ -25,7 +25,13 @@ public partial class textboxTrigger : Area2D
 	{
 		if (body.Name == "Player")
 		{
+
 			playerInRange = true;
+			Sprite2D interactionHint = body.GetNodeOrNull<Sprite2D>("interactionHint");
+			if (interactionHint != null)
+			{
+				interactionHint.Visible = true;
+			}
 		}
 	}
 
@@ -34,6 +40,11 @@ public partial class textboxTrigger : Area2D
 		if (body.Name == "Player")
 		{
 			playerInRange = false;
+			Sprite2D interactionHint = body.GetNodeOrNull<Sprite2D>("interactionHint");
+			if (interactionHint != null)
+			{
+				interactionHint.Visible = false;
+			}
 		}
 	}
 
