@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdwpt334wo0s5"]
+[gd_scene load_steps=6 format=3 uid="uid://cdwpt334wo0s5"]
 
 [ext_resource type="Texture2D" uid="uid://cs7oqe3l4df5e" path="res://assets/overworld_bg.png" id="1_c5u67"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="1_m0wi0"]
+[ext_resource type="Script" uid="uid://bwdjyxcj7i5t5" path="res://Overworld/overworld.gd" id="1_w0xj0"]
 [ext_resource type="PackedScene" uid="uid://f7vmuwfukbqs" path="res://Overworld/enemy_spawner.tscn" id="3_68let"]
 [ext_resource type="PackedScene" uid="uid://clgtpjlscnpwt" path="res://Overworld/basic_enemy.tscn" id="4_4rymo"]
 
 [node name="Overworld" type="Node2D"]
+script = ExtResource("1_w0xj0")
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
