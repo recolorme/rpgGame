@@ -17,7 +17,7 @@ func _ready() -> void:
 	_mana.text = str(data.mp)
 	data.hp_changed.connect(_on_data_hp_changed)
 
-func _on_data_hp_changed(hp: int, change: int) -> void:
+func _on_data_hp_changed(hp: int, damage: int, defense: int) -> void:
 	_health.text = str(hp)
 	if hp == 0:
 		modulate = Color.DARK_RED

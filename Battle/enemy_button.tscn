@@ -12,7 +12,6 @@ flip_h = true
 script = ExtResource("2_m8k6a")
 
 [node name="ATBBar" parent="." instance=ExtResource("3_3rfcl")]
-visible = false
 layout_mode = 0
 offset_top = 34.0
 offset_right = 36.0

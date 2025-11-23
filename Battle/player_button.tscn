@@ -4,9 +4,18 @@
 [ext_resource type="Script" uid="uid://b6qbdn3x5112l" path="res://Battle/player_button.gd" id="2_5r5wu"]
 
 [node name="BattlePlayer" type="TextureButton"]
-offset_left = 45.0
-offset_top = 63.0
-offset_right = 61.0
-offset_bottom = 79.0
-texture_normal = ExtResource("1_5r5wu")
+anchors_preset = -1
+anchor_right = 0.125
+anchor_bottom = 0.13333334
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 24)
+size_flags_horizontal = 0
 script = ExtResource("2_5r5wu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("1_5r5wu")
+hframes = 3
+vframes = 3

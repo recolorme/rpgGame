@@ -20,17 +20,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l2koo")
 script = ExtResource("2_dw4jg")
+metadata/_edit_lock_ = true
 
-[node name="BG" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.054902, 0.141176, 0.329412, 1)
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ol6im")
+metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Control" parent="."]
 layout_mode = 1
@@ -89,32 +82,40 @@ script = ExtResource("4_0npn6")
 metadata/_edit_lock_ = true
 
 [node name="PlayerButton" parent="Players" instance=ExtResource("3_7sfm4")]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 53.0
-offset_right = 81.0
-offset_bottom = 69.0
+layout_mode = 1
+anchor_left = 0.26171875
+anchor_top = 0.1875
+anchor_right = 0.38671875
+anchor_bottom = 0.32083333
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerButton2" parent="Players" instance=ExtResource("3_7sfm4")]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 80.0
-offset_right = 70.0
-offset_bottom = 96.0
+layout_mode = 1
+anchor_left = 0.20703125
+anchor_top = 0.31666666
+anchor_right = 0.33203125
+anchor_bottom = 0.45
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerButton3" parent="Players" instance=ExtResource("3_7sfm4")]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 106.0
-offset_right = 60.0
-offset_bottom = 122.0
+layout_mode = 1
+anchor_left = 0.15234375
+anchor_top = 0.45
+anchor_right = 0.27734375
+anchor_bottom = 0.5833333
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PlayerButton4" parent="Players" instance=ExtResource("3_7sfm4")]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 133.0
-offset_right = 48.0
-offset_bottom = 149.0
+layout_mode = 1
+anchor_left = 0.10546875
+anchor_top = 0.575
+anchor_right = 0.23046875
+anchor_bottom = 0.7083333
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="GUIMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -123,6 +124,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Bottom" type="HBoxContainer" parent="GUIMargin"]
 custom_minimum_size = Vector2(0, 52)
@@ -189,7 +191,7 @@ layout_mode = 2
 
 [node name="Options" parent="." instance=ExtResource("2_8ha6l")]
 custom_minimum_size = Vector2(54, 52)
-layout_mode = 2
+layout_mode = 0
 offset_left = 22.0
 offset_top = 184.0
 offset_right = 76.0
@@ -227,7 +229,7 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../Button")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Button3")
-text = "MAGIC"
+text = "SKILL"
 
 [node name="Button3" type="Button" parent="Options/Options"]
 layout_mode = 2
