@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bogvqv0gahkni"
-path="res://.godot/imported/penguinsound.wav-abf45630951f2633f101d9529b198030.sample"
+path="res://.godot/imported/penguinsound.wav-c9106be6d1e99ac437bcbba5a2bd8800.sample"
 
 [deps]
 
-source_file="res://penguinsound.wav"
-dest_files=["res://.godot/imported/penguinsound.wav-abf45630951f2633f101d9529b198030.sample"]
+source_file="res://assets/sfx/penguinsound.wav"
+dest_files=["res://.godot/imported/penguinsound.wav-c9106be6d1e99ac437bcbba5a2bd8800.sample"]
 
 [params]
 
