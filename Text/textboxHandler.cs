@@ -9,13 +9,13 @@ public partial class textboxHandler : Node
 	public float TEXT_SPEED = 2f;
 	public string[] textQueue;
 
-	enum State
+	public enum State
 	{
 		IDLE,
 		TYPING,
 		FINISHED
 	}
-	private State currentState = State.IDLE;
+	public State currentState = State.IDLE;
 	private Tween tween;
 
 	// Called when the node enters the scene tree for the first time.
@@ -27,7 +27,6 @@ public partial class textboxHandler : Node
 		endSymbol = GetNode<Label>("TextboxContainer/Panel/HBoxContainer/endSymbol");
 
 		hideTextbox();
-		textQueue = ["This is a test of the textbox system.", "It supports multiple lines of text.", "You can press the accept button to speed up the text display.", "Once the text is fully displayed, press accept again to hide the textbox."];
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
