@@ -5,6 +5,7 @@ var direction: Vector2 = Vector2.ZERO
 var speed: float = 150.0 
 var state: String = "idle"
 
+@onready var tbHandler = get_node("../Textbox") as textboxHandler
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -14,10 +15,13 @@ func _ready():
 
 
 func _process(delta):
-	direction = Vector2( 
-		Input.get_axis("left","right"),
-		Input.get_axis("up","down")
-	).normalized()
+	if canMove():
+		direction = Vector2( 
+			Input.get_axis("left","right"),
+			Input.get_axis("up","down")
+		).normalized()
+	else:
+		direction = Vector2.ZERO
 
 	velocity = direction * speed
 	
@@ -62,3 +66,7 @@ func AnimDirection() -> String:
 		return "up"
 	else:
 		return "side"
+		
+func canMove() -> bool:
+	return tbHandler.currentState == 0 && tbHandler.textQueue.size() == 0 # 0 == IDLE
+	

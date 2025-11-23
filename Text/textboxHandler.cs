@@ -1,6 +1,7 @@
 using Godot;
 using System.Threading.Tasks;
 
+[GlobalClass]
 public partial class textboxHandler : Node
 {
 	public MarginContainer TextboxContainer;
