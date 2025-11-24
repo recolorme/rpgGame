@@ -2,7 +2,8 @@ class_name Player extends CharacterBody2D
 
 var cardinal_direction: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
-var speed: float = 150.0 
+var speed: float = 120.0
+var speed_init = speed
 var state: String = "idle"
 
 @onready var tbHandler = get_node("../Textbox") as textboxHandler
@@ -13,24 +14,27 @@ var state: String = "idle"
 func _ready():
 	pass
 
-
 func _process(delta):
-	if canMove():
-		direction = Vector2( 
-			Input.get_axis("left","right"),
-			Input.get_axis("up","down")
-		).normalized()
-	else:
-		direction = Vector2.ZERO
-
-	velocity = direction * speed
+	direction = Vector2( 
+		Input.get_vector("left","right","up","down")) # maybe someday mess with the diagonals again......
 	
 	if SetState() == true or SetDirection() == true:
 		UpdateAnimation()
 	
 func _physics_process(delta):
-	move_and_slide()	
+	walk()
+
+	velocity = direction * speed
+
 	
+	move_and_slide()
+
+func walk():
+	if Input.is_action_just_pressed("shift"):
+		speed /= 8
+	elif Input.is_action_just_released("shift"):
+		speed = speed_init
+
 func SetDirection() -> bool: 
 	var new_dir: Vector2 = cardinal_direction
 

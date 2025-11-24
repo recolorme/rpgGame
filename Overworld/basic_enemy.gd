@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 func _on_interact_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("mamaguebo")
-		#switch_scenes()
+		get_tree().change_scene_to_file.call_deferred("res://Battle/battle.tscn")
