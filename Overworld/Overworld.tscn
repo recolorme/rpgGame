@@ -43,7 +43,7 @@ position = Vector2(-76, -56)
 
 [node name="Door" type="Area2D" parent="."]
 script = ExtResource("5_0u72k")
-text = PackedStringArray("It\'s a beautiful day outside.", "Birds are singing, flowers are blooming...", "On days like these, kids like you...", "Should be playing Cave Story")
+jsonPath = "res://Text/Dialogues/door.txt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(179, 36)

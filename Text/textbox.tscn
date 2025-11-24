@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://31n12gemnkal"]
+[gd_scene load_steps=4 format=3 uid="uid://31n12gemnkal"]
 
 [ext_resource type="Script" uid="uid://4agqjgnk8wdy" path="res://Text/textboxHandler.cs" id="1_lr561"]
+[ext_resource type="Script" uid="uid://nuljudgpchjn" path="res://Text/JSONHelper.gd" id="2_wgx5w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5u67"]
 bg_color = Color(0, 0, 0, 1)
@@ -64,3 +65,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "*"
+
+[node name="JSONHelper" type="Node" parent="."]
+script = ExtResource("2_wgx5w")

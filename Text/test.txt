@@ -1,1 +1,4 @@
-Hello World
+[
+    "This is a test dialogue.",
+    "Text reference might be broken or not set properly."
+]

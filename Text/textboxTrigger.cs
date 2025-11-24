@@ -2,7 +2,8 @@ using Godot;
 using System;
 public partial class textboxTrigger : Area2D
 {
-	[Export] public string[] text = Array.Empty<string>();
+	[Export] public string jsonPath = "res://Text/test.txt";
+	public string[] text;
 	private bool playerInRange = false;
 	private textboxHandler textboxHandler;
 	public override void _Ready()
@@ -11,6 +12,9 @@ public partial class textboxTrigger : Area2D
 		BodyExited += OnBodyExited;
 
 		textboxHandler = GetNode<textboxHandler>($"../Textbox");
+		var jsonHelper = GetNode<Node>($"../Textbox/JSONHelper");
+		text = ((Godot.Variant)jsonHelper.Call("load_dialogue", jsonPath)).AsStringArray();
+
 	}
 
 	public override void _Process(double delta)
