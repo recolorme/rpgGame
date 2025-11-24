@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdwpt334wo0s5"]
+[gd_scene load_steps=8 format=3 uid="uid://cdwpt334wo0s5"]
 
 [ext_resource type="Texture2D" uid="uid://cs7oqe3l4df5e" path="res://assets/overworld_bg.png" id="1_c5u67"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="1_m0wi0"]
-[ext_resource type="Script" path="res://Overworld/overworld.gd" id="1_w0xj0"]
 [ext_resource type="PackedScene" uid="uid://f7vmuwfukbqs" path="res://Overworld/enemy_spawner.tscn" id="3_68let"]
 [ext_resource type="PackedScene" uid="uid://clgtpjlscnpwt" path="res://Overworld/basic_enemy.tscn" id="4_4rymo"]
 [ext_resource type="Script" uid="uid://bwir5c11dvm88" path="res://Text/textboxTrigger.cs" id="5_0u72k"]

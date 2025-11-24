@@ -15,8 +15,11 @@ func _ready():
 	pass
 
 func _process(delta):
-	direction = Vector2( 
-		Input.get_vector("left","right","up","down")) # maybe someday mess with the diagonals again......
+	if canMove():
+		direction = Vector2( 
+			Input.get_vector("left","right","up","down")) # maybe someday mess with the diagonals again......
+	else:
+		direction = Vector2.ZERO
 	
 	if SetState() == true or SetDirection() == true:
 		UpdateAnimation()

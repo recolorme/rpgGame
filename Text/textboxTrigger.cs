@@ -2,7 +2,7 @@ using Godot;
 using System;
 public partial class textboxTrigger : Area2D
 {
-	[Export] public string jsonPath = "res://Text/test.txt";
+	[Export] public string jsonPath = "res://Text/Dialogues/test.txt";
 	public string[] text;
 	private bool playerInRange = false;
 	private textboxHandler textboxHandler;
