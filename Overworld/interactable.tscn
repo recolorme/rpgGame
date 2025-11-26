@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm7p4h805qkcn"]
+
+[ext_resource type="Script" uid="uid://bwir5c11dvm88" path="res://Text/textboxTrigger.cs" id="1_2rr8l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5i8j"]
+size = Vector2(22, 24)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_2rr8l")
+jsonPath = "res://Text/Dialogues/door.txt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w5i8j")
