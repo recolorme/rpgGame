@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdwpt334wo0s5"]
+[gd_scene load_steps=8 format=3 uid="uid://cdwpt334wo0s5"]
 
 [ext_resource type="Texture2D" uid="uid://cs7oqe3l4df5e" path="res://assets/overworld_bg.png" id="1_c5u67"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="1_m0wi0"]
 [ext_resource type="PackedScene" uid="uid://f7vmuwfukbqs" path="res://Overworld/enemy_spawner.tscn" id="3_68let"]
 [ext_resource type="PackedScene" uid="uid://clgtpjlscnpwt" path="res://Overworld/basic_enemy.tscn" id="4_4rymo"]
+[ext_resource type="Script" uid="uid://bwir5c11dvm88" path="res://Text/textboxTrigger.cs" id="5_0u72k"]
+[ext_resource type="PackedScene" uid="uid://31n12gemnkal" path="res://Text/textbox.tscn" id="6_3rv81"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5i8j"]
+size = Vector2(22, 24)
 
 [node name="Overworld" type="Node2D"]
 metadata/_edit_lock_ = true
@@ -33,3 +38,13 @@ position = Vector2(88, -66)
 
 [node name="Enemy" parent="." instance=ExtResource("4_4rymo")]
 position = Vector2(-76, -56)
+
+[node name="Door" type="Area2D" parent="."]
+script = ExtResource("5_0u72k")
+jsonPath = "res://Text/Dialogues/door.txt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(179, 36)
+shape = SubResource("RectangleShape2D_w5i8j")
+
+[node name="Textbox" parent="." instance=ExtResource("6_3rv81")]

@@ -1,0 +1,5 @@
+[
+	"Sample text for the door",
+	"No penguins inside, just Freddy Fazbear",
+	"hur, hur, hu-hur, hur, hur hu-hur hu-hur"
+]
