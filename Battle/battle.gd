@@ -153,7 +153,7 @@ func run_event() -> void:
 	if state >= States.VICTORY:
 		return
 	
-	var event: Array = event_queue.pop_front()
+	var event: Array = event_queue.pop_front() # TODO: pop_front() returns null when empty... find a fix
 	var actor: BattleActor = event[ACTOR]
 	var target: BattleActor = event[TARGET]
 	
