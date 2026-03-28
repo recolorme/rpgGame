@@ -27,6 +27,8 @@ public partial class textboxHandler : Node
 		text = GetNode<Label>("TextboxContainer/Panel/HBoxContainer/Label");
 		endSymbol = GetNode<Label>("TextboxContainer/Panel/HBoxContainer/endSymbol");
 
+		text.VisibleCharactersBehavior = TextServer.VisibleCharactersBehavior.CharsAfterShaping;
+
 		hideTextbox();
 	}
 

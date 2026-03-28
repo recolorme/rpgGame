@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bic1j8ofgobyq"]
+[gd_scene format=3 uid="uid://bic1j8ofgobyq"]
 
 [ext_resource type="Theme" uid="uid://djs17jejidaca" path="res://Battle/default_theme.tres" id="1_l2koo"]
 [ext_resource type="PackedScene" uid="uid://cmjrf0ne8f0i" path="res://Battle/window_default.tscn" id="2_8ha6l"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://kbbtw168dn82" path="res://Battle/menu_cursor.tscn" id="8_mhv3b"]
 [ext_resource type="PackedScene" uid="uid://36n4oskaammn" path="res://Battle/down_cursor.tscn" id="10_ol6im"]
 
-[node name="Battle" type="Control"]
+[node name="Battle" type="Control" unique_id=673575400]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ theme = ExtResource("1_l2koo")
 script = ExtResource("2_dw4jg")
 metadata/_edit_lock_ = true
 
-[node name="BG" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="." unique_id=1031313358]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ grow_vertical = 2
 texture = ExtResource("3_ol6im")
 metadata/_edit_lock_ = true
 
-[node name="Enemies" type="Control" parent="."]
+[node name="Enemies" type="Control" parent="." unique_id=998427917]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +42,7 @@ grow_vertical = 2
 script = ExtResource("4_0npn6")
 metadata/_edit_lock_ = true
 
-[node name="EnemyButton" parent="Enemies" instance=ExtResource("4_lcjiy")]
+[node name="EnemyButton" parent="Enemies" unique_id=1332524697 instance=ExtResource("4_lcjiy")]
 layout_mode = 0
 offset_left = 181.0
 offset_top = 49.0
@@ -51,7 +51,7 @@ offset_bottom = 65.0
 focus_neighbor_left = NodePath("../EnemyButton3")
 focus_neighbor_top = NodePath("../EnemyButton3")
 
-[node name="EnemyButton2" parent="Enemies" instance=ExtResource("4_lcjiy")]
+[node name="EnemyButton2" parent="Enemies" unique_id=1332854185 instance=ExtResource("4_lcjiy")]
 layout_mode = 0
 offset_left = 190.0
 offset_top = 78.0
@@ -62,7 +62,7 @@ focus_neighbor_top = NodePath("../EnemyButton")
 focus_neighbor_right = NodePath("../EnemyButton3")
 focus_neighbor_bottom = NodePath("../EnemyButton3")
 
-[node name="EnemyButton3" parent="Enemies" instance=ExtResource("4_lcjiy")]
+[node name="EnemyButton3" parent="Enemies" unique_id=882257115 instance=ExtResource("4_lcjiy")]
 layout_mode = 0
 offset_left = 199.0
 offset_top = 109.0
@@ -71,7 +71,7 @@ offset_bottom = 125.0
 focus_neighbor_right = NodePath("../EnemyButton")
 focus_neighbor_bottom = NodePath("../EnemyButton")
 
-[node name="Players" type="Control" parent="."]
+[node name="Players" type="Control" parent="." unique_id=786416480]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,7 +81,7 @@ grow_vertical = 2
 script = ExtResource("4_0npn6")
 metadata/_edit_lock_ = true
 
-[node name="PlayerButton" parent="Players" instance=ExtResource("3_7sfm4")]
+[node name="PlayerButton" parent="Players" unique_id=1715914485 instance=ExtResource("3_7sfm4")]
 layout_mode = 1
 anchor_left = 0.26171875
 anchor_top = 0.1875
@@ -90,7 +90,7 @@ anchor_bottom = 0.32083333
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="PlayerButton2" parent="Players" instance=ExtResource("3_7sfm4")]
+[node name="PlayerButton2" parent="Players" unique_id=1002947387 instance=ExtResource("3_7sfm4")]
 layout_mode = 1
 anchor_left = 0.20703125
 anchor_top = 0.31666666
@@ -99,7 +99,7 @@ anchor_bottom = 0.45
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="PlayerButton3" parent="Players" instance=ExtResource("3_7sfm4")]
+[node name="PlayerButton3" parent="Players" unique_id=1086400570 instance=ExtResource("3_7sfm4")]
 layout_mode = 1
 anchor_left = 0.15234375
 anchor_top = 0.45
@@ -108,7 +108,7 @@ anchor_bottom = 0.5833333
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="PlayerButton4" parent="Players" instance=ExtResource("3_7sfm4")]
+[node name="PlayerButton4" parent="Players" unique_id=1187028015 instance=ExtResource("3_7sfm4")]
 layout_mode = 1
 anchor_left = 0.10546875
 anchor_top = 0.575
@@ -117,7 +117,7 @@ anchor_bottom = 0.7083333
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="GUIMargin" type="MarginContainer" parent="."]
+[node name="GUIMargin" type="MarginContainer" parent="." unique_id=25464946]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,15 +126,15 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Bottom" type="HBoxContainer" parent="GUIMargin"]
+[node name="Bottom" type="HBoxContainer" parent="GUIMargin" unique_id=2051165942]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Enemies" parent="GUIMargin/Bottom" instance=ExtResource("2_8ha6l")]
+[node name="Enemies" parent="GUIMargin/Bottom" unique_id=152290541 instance=ExtResource("2_8ha6l")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GUIMargin/Bottom/Enemies"]
+[node name="MarginContainer" type="MarginContainer" parent="GUIMargin/Bottom/Enemies" unique_id=291445090]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,27 +143,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_right = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUIMargin/Bottom/Enemies/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIMargin/Bottom/Enemies/MarginContainer" unique_id=2080712270]
 layout_mode = 2
 theme_override_constants/separation = -2
 
-[node name="Label" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer" unique_id=1181468747]
 layout_mode = 2
 text = "ENEMY"
 
-[node name="Label2" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer" unique_id=436188779]
 layout_mode = 2
 text = "ENEMY"
 
-[node name="Label3" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="GUIMargin/Bottom/Enemies/MarginContainer/VBoxContainer" unique_id=90683767]
 layout_mode = 2
 text = "ENEMY"
 
-[node name="Players" parent="GUIMargin/Bottom" instance=ExtResource("2_8ha6l")]
+[node name="Players" parent="GUIMargin/Bottom" unique_id=2144100470 instance=ExtResource("2_8ha6l")]
 layout_mode = 2
 size_flags_stretch_ratio = 2.0
 
-[node name="MarginContainer" type="MarginContainer" parent="GUIMargin/Bottom/Players"]
+[node name="MarginContainer" type="MarginContainer" parent="GUIMargin/Bottom/Players" unique_id=1657084856]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -174,22 +174,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_right = 0
 
-[node name="PlayerInfos" type="VBoxContainer" parent="GUIMargin/Bottom/Players/MarginContainer"]
+[node name="PlayerInfos" type="VBoxContainer" parent="GUIMargin/Bottom/Players/MarginContainer" unique_id=925531537]
 layout_mode = 2
 
-[node name="PlayerInfoBar" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" instance=ExtResource("4_mhv3b")]
+[node name="PlayerInfoBar" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" unique_id=934831260 instance=ExtResource("4_mhv3b")]
 layout_mode = 2
 
-[node name="PlayerInfoBar2" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" instance=ExtResource("4_mhv3b")]
+[node name="PlayerInfoBar2" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" unique_id=292855532 instance=ExtResource("4_mhv3b")]
 layout_mode = 2
 
-[node name="PlayerInfoBar3" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" instance=ExtResource("4_mhv3b")]
+[node name="PlayerInfoBar3" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" unique_id=1096382766 instance=ExtResource("4_mhv3b")]
 layout_mode = 2
 
-[node name="PlayerInfoBar4" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" instance=ExtResource("4_mhv3b")]
+[node name="PlayerInfoBar4" parent="GUIMargin/Bottom/Players/MarginContainer/PlayerInfos" unique_id=179136332 instance=ExtResource("4_mhv3b")]
 layout_mode = 2
 
-[node name="Options" parent="." instance=ExtResource("2_8ha6l")]
+[node name="Options" parent="." unique_id=995348940 instance=ExtResource("2_8ha6l")]
 visible = false
 custom_minimum_size = Vector2(54, 52)
 layout_mode = 0
@@ -202,7 +202,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 size_flags_stretch_ratio = 2.0
 
-[node name="Options" type="VBoxContainer" parent="Options"]
+[node name="Options" type="VBoxContainer" parent="Options" unique_id=1350944303]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,7 +214,7 @@ grow_vertical = 2
 theme_override_constants/separation = -5
 script = ExtResource("4_0npn6")
 
-[node name="Button" type="Button" parent="Options/Options"]
+[node name="Button" type="Button" parent="Options/Options" unique_id=1652937245]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
@@ -223,7 +223,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Button2")
 text = "FIGHT"
 
-[node name="Button2" type="Button" parent="Options/Options"]
+[node name="Button2" type="Button" parent="Options/Options" unique_id=1040987208]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
@@ -232,7 +232,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Button3")
 text = "SKILL"
 
-[node name="Button3" type="Button" parent="Options/Options"]
+[node name="Button3" type="Button" parent="Options/Options" unique_id=1142188887]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
@@ -241,7 +241,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Button4")
 text = "ITEM"
 
-[node name="Button4" type="Button" parent="Options/Options"]
+[node name="Button4" type="Button" parent="Options/Options" unique_id=1413984022]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
@@ -250,14 +250,14 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Button")
 text = "DEFEND"
 
-[node name="MenuCursor" parent="." instance=ExtResource("8_mhv3b")]
+[node name="MenuCursor" parent="." unique_id=1077674796 instance=ExtResource("8_mhv3b")]
 layout_mode = 1
 offset_left = 10.0
 offset_top = 186.0
 offset_right = -230.0
 offset_bottom = -38.0
 
-[node name="DownCursor" parent="." instance=ExtResource("10_ol6im")]
+[node name="DownCursor" parent="." unique_id=1169532184 instance=ExtResource("10_ol6im")]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 24.0
