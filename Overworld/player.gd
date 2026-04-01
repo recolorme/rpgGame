@@ -1,13 +1,25 @@
 class_name Player extends CharacterBody2D
 
-var cardinal_direction: Vector2 = Vector2.DOWN
+enum{
+	IDLE,
+	MOVE
+}
+
+# remove maybe?
+var cardinal_direction: Vector2 = Vector2.DOWN 
 var direction: Vector2 = Vector2.ZERO
-var speed: float = 120.0
-var speed_init = speed
-var state: String = "idle"
+var inputVector = Vector2.ZERO
+
+const speed_walk = 64 
+const speed_run = 128
+var state = MOVE
+
+var run = false #temp variable 
+var paused: bool = false # temp value, fix this later with a proper pause menu
 
 @onready var tbHandler = get_node("../Textbox") as textboxHandler
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite: Sprite2D = $Sprite2D
 
 
@@ -21,22 +33,25 @@ func _process(delta):
 	else:
 		direction = Vector2.ZERO
 	
-	if SetState() == true or SetDirection() == true:
+	if state != null or SetDirection() == true:
 		UpdateAnimation()
 	
 func _physics_process(delta):
-	walk()
-
-	velocity = direction * speed
+	match state:
+		MOVE:
+			move_state(delta)
 
 	
-	move_and_slide()
+	
+	#walk()
+	#velocity = direction * speed_walk
+	#move_and_slide()
 
-func walk():
-	if Input.is_action_just_pressed("shift"):
-		speed /= 8
-	elif Input.is_action_just_released("shift"):
-		speed = speed_init
+#func walk():
+	#if Input.is_action_just_pressed("shift"):
+		#speed_walk /= 8
+	#elif Input.is_action_just_released("shift"):
+		#speed_walk = speed_init
 
 func SetDirection() -> bool: 
 	var new_dir: Vector2 = cardinal_direction
@@ -55,12 +70,15 @@ func SetDirection() -> bool:
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	return true
 	
-func SetState() -> bool:
-	var new_state: String = "idle" if direction == Vector2.ZERO else "walk"
-	if new_state == state:
-		return false
-	state = new_state
-	return true
+
+# this function shouldnt be necessary with the enum
+
+# func SetState() -> bool:
+# 	var new_state: String = "idle" if direction == Vector2.ZERO else "walk"
+# 	if new_state == state:
+# 		return false
+# 	state = new_state
+# 	return true
 	
 func UpdateAnimation() -> void:
 	animation_player.play(state + "_" + AnimDirection())
@@ -73,7 +91,30 @@ func AnimDirection() -> String:
 		return "up"
 	else:
 		return "side"
-		
-func canMove() -> bool:
+
+# CHECK IF THIS FUNCTION IS EVEN NECESSARY
+func canMove() -> bool: 
+	if tbHandler == null: #temp fix
+		return true # temp fix
 	return tbHandler.currentState == 0 && tbHandler.textQueue.size() == 0 # 0 == IDLE
 	
+func move_state(delta):
+	if !paused:
+		_movement(delta)
+
+func _movement(delta):
+	if inputVector != Vector2.ZERO or run == true:
+		move()
+
+func move():
+	if run:
+		pass
+	else:
+		velocity = inputVector * speed_walk
+		
+	if inputVector != Vector2.ZERO:
+		direction = inputVector
+		
+		# bottom is for looking for events...... ignore for now......
+		# eventRayCaster.rotation = direction.angle() - TAU/4
+		

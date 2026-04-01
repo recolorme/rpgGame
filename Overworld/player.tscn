@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bappyg3rx3k14"]
+[gd_scene format=3 uid="uid://bappyg3rx3k14"]
 
 [ext_resource type="Texture2D" uid="uid://cauifflv67suy" path="res://assets/pengu.png" id="1_hic56"]
 [ext_resource type="Script" uid="uid://bx2i3d0xvepme" path="res://Overworld/player.gd" id="1_i1m7t"]
@@ -7,21 +7,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh1xq"]
 size = Vector2(19, 15)
-
-[sub_resource type="Animation" id="Animation_i1m7t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
 
 [sub_resource type="Animation" id="Animation_0c5os"]
 resource_name = "walk_down_2"
@@ -125,45 +110,60 @@ tracks/0/keys = {
 "values": [7, 6, 8, 6]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgm6w"]
-_data = {
-&"RESET": SubResource("Animation_i1m7t"),
-&"idle_down": SubResource("Animation_0c5os"),
-&"idle_side": SubResource("Animation_t364u"),
-&"idle_up": SubResource("Animation_cyhl5"),
-&"walk_down": SubResource("Animation_fh1xq"),
-&"walk_side": SubResource("Animation_hgm6w"),
-&"walk_up": SubResource("Animation_blqmb")
+[sub_resource type="Animation" id="Animation_i1m7t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
 }
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgm6w"]
+_data = {
+&"IDLE_down": SubResource("Animation_0c5os"),
+&"IDLE_side": SubResource("Animation_t364u"),
+&"IDLE_up": SubResource("Animation_cyhl5"),
+&"MOVE_down": SubResource("Animation_fh1xq"),
+&"MOVE_side": SubResource("Animation_hgm6w"),
+&"MOVE_up": SubResource("Animation_blqmb"),
+&"RESET": SubResource("Animation_i1m7t")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=976425999]
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
 script = ExtResource("1_i1m7t")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1075974605]
 position = Vector2(-0.5, -2.5)
 shape = SubResource("RectangleShape2D_fh1xq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1634463107]
 position = Vector2(0, -14)
 texture = ExtResource("1_hic56")
 hframes = 3
 vframes = 3
 frame = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hgm6w")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=592395634]
+libraries/ = SubResource("AnimationLibrary_hgm6w")
 speed_scale = 2.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=117587209]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1844151109]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1767943597]
 stream = ExtResource("3_fh1xq")
 
-[node name="interactionHint" type="Sprite2D" parent="."]
+[node name="interactionHint" type="Sprite2D" parent="." unique_id=1786049020]
 visible = false
 position = Vector2(-0.6250001, -31.374998)
 scale = Vector2(0.90625, 0.90625066)
