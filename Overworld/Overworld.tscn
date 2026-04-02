@@ -33,9 +33,7 @@ z_index = 2
 
 [node name="Enemy Spawner" parent="." unique_id=1992460893 instance=ExtResource("3_68let")]
 position = Vector2(88, -66)
-
-[node name="Enemy" parent="." unique_id=1200802027 instance=ExtResource("4_4rymo")]
-position = Vector2(-76, -56)
+enemy_scene = ExtResource("4_4rymo")
 
 [node name="Door" parent="." unique_id=346674738 instance=ExtResource("5_0u72k")]
 position = Vector2(179, 36)
