@@ -106,6 +106,7 @@ func end() -> void:
 	match state:
 		States.VICTORY:
 			print("wiener is you")
+			get_tree().change_scene_to_file.call_deferred("res://Overworld/Overworld.tscn")
 		States.GAMEOVER:
 			print("loser loser loser")
 

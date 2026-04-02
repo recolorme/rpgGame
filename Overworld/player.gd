@@ -12,9 +12,11 @@ var state: String = "idle"
 
 
 func _ready():
+	PlayerVariables.player = self
+	transform.origin = Vector2(PlayerVariables.xpos, PlayerVariables.ypos)
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if canMove():
 		direction = Vector2( 
 			Input.get_vector("left","right","up","down")) # maybe someday mess with the diagonals again......
@@ -24,7 +26,7 @@ func _process(delta):
 	if SetState() == true or SetDirection() == true:
 		UpdateAnimation()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	walk()
 
 	velocity = direction * speed
