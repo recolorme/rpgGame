@@ -28,9 +28,6 @@ func _ready():
 	pass
 
 func _process(_delta):
-	animation_tree.active = true
-
-func _process(delta):
 	update_animation_parameters()
 
 	if canMove():
@@ -44,7 +41,7 @@ func _process(delta):
 func _physics_process(_delta):
 	match state:
 		MOVE:
-			move_state(delta)
+			move_state(_delta)
 
 # CHECK IF THIS FUNCTION IS EVEN NECESSARY
 # future brad: it is necessary for textbox handling. add back later
@@ -57,7 +54,7 @@ func move_state(delta):
 	if !paused:
 		_movement(delta)
 
-func _movement(delta):
+func _movement(_delta):
 	if inputVector != Vector2.ZERO:
 		move()
 		move_and_slide()

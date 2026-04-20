@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://kbbtw168dn82"]
 
-[ext_resource type="Texture2D" uid="uid://dx30u3dvd5ig1" path="res://assets/cursor_interact.png" id="1_m87oa"]
+[ext_resource type="Texture2D" uid="uid://ca4gyy1yv5cd2" path="res://assets/cursor.png" id="1_3pgjb"]
 [ext_resource type="Script" uid="uid://disy0ktnjy33j" path="res://Battle/menu_cursor.gd" id="2_yx7ii"]
 
-[node name="MenuCursor" type="TextureRect"]
+[node name="MenuCursor" type="TextureRect" unique_id=1824099325]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,6 +11,10 @@ offset_right = -240.0
 offset_bottom = -224.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_m87oa")
 stretch_mode = 2
 script = ExtResource("2_yx7ii")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=209387135]
+position = Vector2(8, 8)
+texture = ExtResource("1_3pgjb")
+vframes = 2
