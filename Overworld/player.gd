@@ -5,94 +5,44 @@ enum{
 	MOVE
 }
 
-# remove maybe?
-var cardinal_direction: Vector2 = Vector2.DOWN 
 var direction: Vector2 = Vector2.ZERO
 var inputVector = Vector2.ZERO
 
-const speed_walk = 64 
+const speed_walk = 128 
 const speed_run = 128
 var state = MOVE
 
 var run = false #temp variable 
-var paused: bool = false # temp value, fix this later with a proper pause menu
+var paused: bool = false # temp variable, fix this later with a proper pause menu
 
 @onready var tbHandler = get_node("../Textbox") as textboxHandler
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
+# below is the state machine that mother encore uses. this is done so that you dont write parameters playback a bunch im assuming
+@onready var animation_state = animation_tree.get("parameters/playback")
 @onready var sprite: Sprite2D = $Sprite2D
 
-
 func _ready():
-	pass
+	animation_tree.active = true
 
 func _process(delta):
+	update_animation_parameters()
+
 	if canMove():
-		direction = Vector2( 
-			Input.get_vector("left","right","up","down")) # maybe someday mess with the diagonals again......
+		inputVector = Input.get_vector("left","right","up","down").normalized()
 	else:
+		inputVector = Vector2.ZERO
 		direction = Vector2.ZERO
-	
-	if state != null or SetDirection() == true:
-		UpdateAnimation()
+
+	direction = inputVector
 	
 func _physics_process(delta):
 	match state:
 		MOVE:
 			move_state(delta)
 
-	
-	
-	#walk()
-	#velocity = direction * speed_walk
-	#move_and_slide()
-
-#func walk():
-	#if Input.is_action_just_pressed("shift"):
-		#speed_walk /= 8
-	#elif Input.is_action_just_released("shift"):
-		#speed_walk = speed_init
-
-func SetDirection() -> bool: 
-	var new_dir: Vector2 = cardinal_direction
-
-	if direction == Vector2.ZERO: # Stands still 
-		return false
-
-	if abs(direction.y) == 0:
-		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT 
-	elif abs(direction.x) == 0:
-		new_dir = Vector2.UP if direction.y < 0 else Vector2.DOWN
-	if new_dir == cardinal_direction:
-		return false
-
-	cardinal_direction = new_dir
-	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
-	return true
-	
-
-# this function shouldnt be necessary with the enum
-
-# func SetState() -> bool:
-# 	var new_state: String = "idle" if direction == Vector2.ZERO else "walk"
-# 	if new_state == state:
-# 		return false
-# 	state = new_state
-# 	return true
-	
-func UpdateAnimation() -> void:
-	animation_player.play(state + "_" + AnimDirection())
-	pass
-
-func AnimDirection() -> String:
-	if cardinal_direction == Vector2.DOWN:
-		return "down"
-	elif cardinal_direction == Vector2.UP:
-		return "up"
-	else:
-		return "side"
-
 # CHECK IF THIS FUNCTION IS EVEN NECESSARY
+# future brad: it is necessary for textbox handling. add back later
 func canMove() -> bool: 
 	if tbHandler == null: #temp fix
 		return true # temp fix
@@ -103,8 +53,12 @@ func move_state(delta):
 		_movement(delta)
 
 func _movement(delta):
-	if inputVector != Vector2.ZERO or run == true:
+	if inputVector != Vector2.ZERO:
 		move()
+		move_and_slide()
+		position = round_vector(position)
+	else:
+		velocity = Vector2.ZERO
 
 func move():
 	if run:
@@ -112,9 +66,32 @@ func move():
 	else:
 		velocity = inputVector * speed_walk
 		
+		#animation_state.travel("walk")
+		
 	if inputVector != Vector2.ZERO:
 		direction = inputVector
+
+'''this is for rounding the position to the nearest pixel, this is done to prevent jittering when moving at low speeds'''
+func round_vector(pos: Vector2) -> Vector2:
+	pos.x = round(pos.x)
+	pos.y = round(pos.y)
+	return pos
 		
-		# bottom is for looking for events...... ignore for now......
-		# eventRayCaster.rotation = direction.angle() - TAU/4
-		
+func update_animation_parameters():
+	if(velocity == Vector2.ZERO):
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+	else:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
+
+	if(Input.is_action_pressed("shift")):
+		animation_tree["parameters/conditions/run"] = true
+	else:
+		animation_tree["parameters/conditions/run"] = false
+
+	if(direction != Vector2.ZERO):
+		animation_tree["parameters/idle/blend_position"] = direction
+		animation_tree["parameters/walk/blend_position"] = direction
+		animation_tree["parameters/run/blend_position"] = direction
+	

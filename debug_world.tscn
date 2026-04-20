@@ -14,4 +14,4 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=809986654 instance=ExtResource("2_n16uc")]
 z_index = 2
-position = Vector2(131, 192)
+position = Vector2(-22, -15)
