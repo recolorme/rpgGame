@@ -1,9 +1,9 @@
 extends Node
 
 var enemies: Dictionary = {
-	"RockSus": BattleActor.new(10,2,0), 
-	"igor": BattleActor.new(20,6,0),
-	"igorBIG": BattleActor.new(20,10,0)
+	"RockSus": BattleActor.new(1,2,0), 
+	"igor": BattleActor.new(1,6,0),
+	"igorBIG": BattleActor.new(1,10,0)
 }
 
 var bosses: Dictionary = {

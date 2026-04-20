@@ -23,8 +23,9 @@ config/icon="res://Battle/icon.svg"
 [autoload]
 
 Debug="*res://Battle/debug.gd"
-Globals="*res://Battle/globals.gd"
 Data="*res://Battle/data.gd"
+Globals="*uid://dybguadfojrtb"
+PlayerVariables="*uid://ccd7da2q8o6a1"
 
 [debug]
 
