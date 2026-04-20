@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfa3nj3sh1b0h"]
+[gd_scene format=3 uid="uid://bfa3nj3sh1b0h"]
 
 [ext_resource type="Texture2D" uid="uid://cauifflv67suy" path="res://assets/pengu.png" id="1_5r5wu"]
 [ext_resource type="Script" uid="uid://b6qbdn3x5112l" path="res://Battle/player_button.gd" id="2_5r5wu"]
 
-[node name="BattlePlayer" type="TextureButton"]
+[node name="BattlePlayer" type="TextureButton" unique_id=963197672]
 anchors_preset = -1
 anchor_right = 0.125
 anchor_bottom = 0.13333334
@@ -14,8 +14,8 @@ size_flags_horizontal = 0
 script = ExtResource("2_5r5wu")
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=586838038]
 position = Vector2(16, 16)
 texture = ExtResource("1_5r5wu")
 hframes = 3
-vframes = 3
+vframes = 4

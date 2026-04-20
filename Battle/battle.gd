@@ -154,7 +154,8 @@ func run_event() -> void:
 	if state >= States.VICTORY:
 		return
 	
-	var event: Array = event_queue.pop_front() # TODO: pop_front() returns null when empty... find a fix
+	var event = event_queue.pop_front() # TODO: if variable is assigned array, pop_front() returns null when empty...
+	# TODO: refactor the event variable later to avoid null.....
 	var actor: BattleActor = event[ACTOR]
 	var target: BattleActor = event[TARGET]
 	
@@ -195,6 +196,20 @@ func run_event() -> void:
 
 	run_event()
 
+func event(BattleActor):
+	pass
+
+
+#TODO: add this suggestion from steven to the code. 
+#nextevent() {
+#if(event_queue.length > 0)
+#return event_queue.popfront()
+#
+#}
+
+# the above and below code does the same shit!
+
+# if(event_queue.length > 0) event_queue.popfront()
 
 
 ## adds an event to the ATB queue (self, target, action)
