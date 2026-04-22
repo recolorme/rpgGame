@@ -1,14 +1,14 @@
 class_name Player extends CharacterBody2D
 
-enum{
+enum {
 	MOVE
 }
 
-var direction: Vector2 = Vector2.ZERO
-var input_vector = Vector2.ZERO
-
 const speed_walk = 128 
 const speed_run = 192
+
+var direction: Vector2 = Vector2.ZERO
+var input_vector = Vector2.ZERO
 var state = MOVE
 
 var is_running = false #temp variable 
@@ -72,7 +72,7 @@ func move():
 		#animation_state.travel("walk")
 	
 	# debug movement values
-	print("Input: ", input_vector, " | Velocity: ", velocity, " | Speed: ", velocity.length())
+	#print("Input: ", input_vector, " | Velocity: ", velocity, " | Speed: ", velocity.length())
 
 	if input_vector != Vector2.ZERO:
 		direction = input_vector

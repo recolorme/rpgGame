@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ow2aokkwyluw"]
+
+[ext_resource type="Script" uid="uid://bq8cjqrtw3r1f" path="res://Overworld/player_camera.gd" id="1_1bgrd"]
+
+[node name="Camera2D" type="Camera2D" unique_id=713426345]
+limit_left = -300
+limit_top = -300
+limit_right = 300
+limit_bottom = 300
+editor_draw_limits = true
+script = ExtResource("1_1bgrd")

@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cauifflv67suy" path="res://assets/pengu.png" id="1_hic56"]
 [ext_resource type="Script" uid="uid://bx2i3d0xvepme" path="res://Overworld/player.gd" id="1_i1m7t"]
+[ext_resource type="PackedScene" uid="uid://ow2aokkwyluw" path="res://Overworld/camera.tscn" id="3_0c5os"]
+[ext_resource type="Script" uid="uid://bq8cjqrtw3r1f" path="res://Overworld/camera.gd" id="3_blqmb"]
 [ext_resource type="AudioStream" uid="uid://b6e53ynr065u8" path="res://assets/sfx/walking_snow-00.wav" id="3_fh1xq"]
 [ext_resource type="Texture2D" uid="uid://dr8pcv5hinps2" path="res://assets/textbox.png" id="4_hgm6w"]
 
@@ -319,7 +321,8 @@ parameters/idle/blend_position = Vector2(-0.0050335526, 0.0047392845)
 parameters/run/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1844151109]
+[node name="Camera2D" parent="." unique_id=713426345 instance=ExtResource("3_0c5os")]
+script = ExtResource("3_blqmb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1767943597]
 stream = ExtResource("3_fh1xq")
