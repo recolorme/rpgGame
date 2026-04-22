@@ -7,7 +7,7 @@ enum States {
 	GAMEOVER,
 }
 
-enum Actions{
+enum Actions {
 	FIGHT,
 	SKILL,
 	ITEM,

@@ -1,13 +1,13 @@
-[gd_scene format=3 uid="uid://x4g7wtu2f110"]
+[gd_scene format=3 uid="uid://ws5i3f0uggba"]
 
-[ext_resource type="Script" uid="uid://d0noxgn3w4wb" path="res://room.gd" id="1_n16uc"]
+[ext_resource type="Script" uid="uid://d0noxgn3w4wb" path="res://Overworld/room.gd" id="1_n16uc"]
 [ext_resource type="Texture2D" uid="uid://bubi8i2ta78wc" path="res://assets/debug_world.png" id="1_ppmq8"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="2_n16uc"]
 
 [node name="DebugWorld" type="Node2D" unique_id=2011065134]
 script = ExtResource("1_n16uc")
 
-[node name="Room" type="Sprite2D" parent="." unique_id=829114906]
+[node name="DebugWorldMap" type="Sprite2D" parent="." unique_id=829114906]
 position = Vector2(227, 1)
 texture = ExtResource("1_ppmq8")
 metadata/_edit_lock_ = true

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdwpt334wo0s5"]
 
-[ext_resource type="Script" uid="uid://bwdjyxcj7i5t5" path="res://Overworld/overworld.gd" id="1_3rv81"]
+[ext_resource type="Script" uid="uid://d0noxgn3w4wb" path="res://Overworld/room.gd" id="1_3rv81"]
 [ext_resource type="Texture2D" uid="uid://cs7oqe3l4df5e" path="res://assets/overworld_bg.png" id="1_c5u67"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="1_m0wi0"]
 [ext_resource type="PackedScene" uid="uid://f7vmuwfukbqs" path="res://Overworld/enemy_spawner.tscn" id="3_68let"]
@@ -8,25 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://cm7p4h805qkcn" path="res://Overworld/interactable.tscn" id="5_0u72k"]
 [ext_resource type="PackedScene" uid="uid://31n12gemnkal" path="res://Text/textbox.tscn" id="6_3rv81"]
 
-[node name="Overworld" type="Node2D" unique_id=178122886]
+[node name="Saturn Valley" type="Node2D" unique_id=178122886]
 script = ExtResource("1_3rv81")
 metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=2001592400]
-z_index = -2
-metadata/_edit_lock_ = true
-
-[node name="TextureRect" type="TextureRect" parent="Area2D" unique_id=801184263]
-offset_left = -269.0
-offset_top = -500.0
-offset_right = 499.0
-offset_bottom = 524.0
+[node name="SaturnValleyMap" type="Sprite2D" parent="." unique_id=910572834]
 texture = ExtResource("1_c5u67")
 metadata/_edit_lock_ = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=79923795]
-position = Vector2(-41, 99)
-polygon = PackedVector2Array(189, 78, 216, 90, 239, 76, 320, -5, 270, -1, 235, -6, 189, 4)
 
 [node name="Player" parent="." unique_id=11577613 instance=ExtResource("1_m0wi0")]
 z_index = 2
@@ -36,6 +24,6 @@ position = Vector2(88, -66)
 enemy_scene = ExtResource("4_4rymo")
 
 [node name="Door" parent="." unique_id=346674738 instance=ExtResource("5_0u72k")]
-position = Vector2(179, 36)
+position = Vector2(65, 21)
 
 [node name="Textbox" parent="." unique_id=840259716 instance=ExtResource("6_3rv81")]
