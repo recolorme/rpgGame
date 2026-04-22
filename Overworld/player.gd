@@ -1,21 +1,20 @@
 class_name Player extends CharacterBody2D
 
 enum{
-	IDLE,
 	MOVE
 }
 
 var direction: Vector2 = Vector2.ZERO
-var inputVector = Vector2.ZERO
+var input_vector = Vector2.ZERO
 
 const speed_walk = 128 
-const speed_run = 128
+const speed_run = 192
 var state = MOVE
 
-var run = false #temp variable 
+var is_running = false #temp variable 
 var paused: bool = false # temp variable, fix this later with a proper pause menu
 
-@onready var tbHandler = get_node("../Textbox") as textboxHandler
+@onready var tb_handler = get_node("../Textbox") as textboxHandler
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 # below is the state machine that mother encore uses. this is done so that you dont write parameters playback a bunch im assuming
@@ -23,39 +22,42 @@ var paused: bool = false # temp variable, fix this later with a proper pause men
 @onready var sprite: Sprite2D = $Sprite2D
 
 func _ready():
+	# stores player location on the current map
 	PlayerVariables.player = self
 	transform.origin = Vector2(PlayerVariables.xpos, PlayerVariables.ypos)
-	pass
+
+	# player spawns facing down
+	direction = Vector2(0,1)
 
 func _process(_delta):
 	update_animation_parameters()
 
-	if canMove():
-		inputVector = Input.get_vector("left","right","up","down").normalized()
+	if can_move():
+		input_vector = Input.get_vector("left","right","up","down").normalized()
 	else:
-		inputVector = Vector2.ZERO
+		input_vector = Vector2.ZERO
 		direction = Vector2.ZERO
 
-	direction = inputVector
+	direction = input_vector
 	
 func _physics_process(_delta):
 	match state:
 		MOVE:
 			move_state(_delta)
 
-# CHECK IF THIS FUNCTION IS EVEN NECESSARY
-# future brad: it is necessary for textbox handling. add back later
-func canMove() -> bool: 
-	if tbHandler == null: #temp fix
+# function for textbox handling. maybe for cutscenes eventually?
+func can_move() -> bool: 
+	if tb_handler == null: #temp fix
 		return true # temp fix
-	return tbHandler.currentState == 0 && tbHandler.textQueue.size() == 0 # 0 == IDLE
+	#TODO: maybe reuse state enum in the return statement?
+	return tb_handler.currentState == 0 && tb_handler.textQueue.size() == 0 # 0 == IDLE 
 	
 func move_state(delta):
 	if !paused:
 		_movement(delta)
 
 func _movement(_delta):
-	if inputVector != Vector2.ZERO:
+	if input_vector != Vector2.ZERO:
 		move()
 		move_and_slide()
 		position = round_vector(position)
@@ -63,17 +65,19 @@ func _movement(_delta):
 		velocity = Vector2.ZERO
 
 func move():
-	if run:
+	if is_running:
 		pass
 	else:
-		velocity = inputVector * speed_walk
-		
+		velocity = input_vector * speed_walk
 		#animation_state.travel("walk")
-		
-	if inputVector != Vector2.ZERO:
-		direction = inputVector
+	
+	# debug movement values
+	print("Input: ", input_vector, " | Velocity: ", velocity, " | Speed: ", velocity.length())
 
-'''this is for rounding the position to the nearest pixel, this is done to prevent jittering when moving at low speeds'''
+	if input_vector != Vector2.ZERO:
+		direction = input_vector
+
+## this is for rounding the position to the nearest pixel during overworld movement, in order to prevent jittering
 func round_vector(pos: Vector2) -> Vector2:
 	pos.x = round(pos.x)
 	pos.y = round(pos.y)
