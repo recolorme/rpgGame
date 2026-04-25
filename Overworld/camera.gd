@@ -1,7 +1,5 @@
 class_name PlayerCamera extends Camera2D
 
-@onready var parent = get_parent()
-
 func _ready() -> void:
 	Globals.TileMapBoundsChanged.connect(_on_bounds_changed)
 	
