@@ -30,8 +30,6 @@ func _ready():
 	direction = Vector2(0,1)
 
 func _process(_delta):
-	update_animation_parameters()
-
 	if can_move():
 		input_vector = Input.get_vector("left","right","up","down").normalized()
 	else:
@@ -39,6 +37,7 @@ func _process(_delta):
 		direction = Vector2.ZERO
 
 	direction = input_vector
+	update_animation_parameters()
 	
 func _physics_process(_delta):
 	match state:
@@ -84,7 +83,7 @@ func round_vector(pos: Vector2) -> Vector2:
 	return pos
 		
 func update_animation_parameters():
-	if(velocity == Vector2.ZERO):
+	if(direction == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false
 	else:
