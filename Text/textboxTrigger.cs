@@ -11,8 +11,8 @@ public partial class textboxTrigger : Area2D
 		BodyEntered += OnBodyEntered;
 		BodyExited += OnBodyExited;
 
-		textboxHandler = GetNode<textboxHandler>($"../Textbox");
-		var jsonHelper = GetNode<Node>($"../Textbox/JSONHelper");
+		textboxHandler = GetNode<textboxHandler>($"../../Textbox");
+		var jsonHelper = GetNode<Node>($"../../Textbox/JSONHelper");
 		text = ((Godot.Variant)jsonHelper.Call("load_dialogue", jsonPath)).AsStringArray();
 
 	}
@@ -27,9 +27,9 @@ public partial class textboxTrigger : Area2D
 
 	private void OnBodyEntered(Node body)
 	{
-		if (body.Name == "Player")
+		// Check if body is Player or any CharacterBody2D
+		if (body.Name == "Player" || body is CharacterBody2D)
 		{
-
 			playerInRange = true;
 			Sprite2D interactionHint = body.GetNodeOrNull<Sprite2D>("interactionHint");
 			if (interactionHint != null)
@@ -41,7 +41,8 @@ public partial class textboxTrigger : Area2D
 
 	private void OnBodyExited(Node body)
 	{
-		if (body.Name == "Player")
+		// Check if body is Player or any CharacterBody2D
+		if (body.Name == "Player" || body is CharacterBody2D)
 		{
 			playerInRange = false;
 			Sprite2D interactionHint = body.GetNodeOrNull<Sprite2D>("interactionHint");

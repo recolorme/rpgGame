@@ -5,9 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5i8j"]
 size = Vector2(22, 24)
 
-[node name="interactable" type="Area2D" unique_id=11725675]
+[node name="interactable" type="Area2D" unique_id=1547712410]
 script = ExtResource("1_dkuna")
-jsonPath = "res://Text/Dialogues/door.txt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=484891623]
 shape = SubResource("RectangleShape2D_w5i8j")
