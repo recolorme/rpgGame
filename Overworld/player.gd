@@ -46,8 +46,8 @@ func _physics_process(_delta):
 
 # function for textbox handling. maybe for cutscenes eventually?
 func can_move() -> bool: 
-	if tb_handler == null: #temp fix
-		return true # temp fix
+	# if tb_handler == null: #temp fix
+	# 	return true # temp fix
 	#TODO: maybe reuse state enum in the return statement?
 	return tb_handler.currentState == 0 && tb_handler.textQueue.size() == 0 # 0 == IDLE 
 	

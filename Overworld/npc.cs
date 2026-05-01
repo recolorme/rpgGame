@@ -4,25 +4,24 @@ using System;
 public partial class npc : CharacterBody2D
 {
 	[Export] public string jsonPath = "res://Text/Dialogues/test.txt";
-	
-	private Area2D detector;
+	public string[] text;
 	private bool playerInRange = false;
 	private textboxHandler textboxHandler;
+	private Area2D interactable; //to use Area2D functions
 
 	public override void _Ready()
 	{
-		base._Ready();
+		//base._Ready();
 		
-		// Get the detector Area2D child
-		detector = GetNode<Area2D>("detector");
-		if (detector != null)
-		{
-			detector.BodyEntered += OnBodyEntered;
-			detector.BodyExited += OnBodyExited;
-		}
-		
-		// Get textbox handler
-		textboxHandler = GetNodeOrNull<textboxHandler>($"../../Textbox");
+
+		interactable = GetNode<Area2D>("interactable");
+
+		interactable.BodyEntered += OnBodyEntered;
+		interactable.BodyExited += OnBodyExited;
+
+		textboxHandler = GetNodeOrNull<textboxHandler>($"../Textbox");
+		var jsonHelper = GetNode<Node>($"../Textbox/JSONHelper");
+		text = ((Godot.Variant)jsonHelper.Call("load_dialogue", jsonPath)).AsStringArray();
 	}
 
 	public override void _Process(double delta)
@@ -68,14 +67,14 @@ public partial class npc : CharacterBody2D
 		}
 		
 		// Load dialogue text
-		var jsonHelper = GetNodeOrNull<Node>($"../../Textbox/JSONHelper");
-		if (jsonHelper == null)
-		{
-			GD.PrintErr("JSONHelper not found.");
-			return;
-		}
+		// var jsonHelper = GetNodeOrNull<Node>($"../../Textbox/JSONHelper");
+		// if (jsonHelper == null)
+		// {
+		// 	GD.PrintErr("JSONHelper not found.");
+		// 	return;
+		// }
 		
-		string[] text = ((Godot.Variant)jsonHelper.Call("load_dialogue", jsonPath)).AsStringArray();
+		// string[] text = ((Godot.Variant)jsonHelper.Call("load_dialogue", jsonPath)).AsStringArray();
 		
 		// Only add new lines if the textbox is idle
 		if (textboxHandler.currentState == textboxHandler.State.IDLE)
