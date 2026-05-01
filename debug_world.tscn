@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d0noxgn3w4wb" path="res://Overworld/room.gd" id="1_n16uc"]
 [ext_resource type="Texture2D" uid="uid://bubi8i2ta78wc" path="res://assets/debug_world.png" id="1_ppmq8"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="2_n16uc"]
-[ext_resource type="PackedScene" uid="uid://clmx54k6byynp" path="res://Overworld/npc.tscn" id="4_nj5k2"]
+[ext_resource type="PackedScene" uid="uid://clmx54k6byynp" path="res://Overworld/NPC.tscn" id="4_nj5k2"]
 [ext_resource type="PackedScene" uid="uid://31n12gemnkal" path="res://Text/textbox.tscn" id="5_n6d21"]
 
 [node name="Debug World" type="Node2D" unique_id=2011065134]
@@ -11,6 +11,7 @@ y_sort_enabled = true
 script = ExtResource("1_n16uc")
 
 [node name="DebugWorldMap" type="Sprite2D" parent="." unique_id=829114906]
+z_index = -10
 position = Vector2(227, 1)
 texture = ExtResource("1_ppmq8")
 metadata/_edit_lock_ = true

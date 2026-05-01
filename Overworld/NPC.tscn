@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cvpmgk7nf2bk2" path="res://assets/NPC_freddy_fazpolarbear.png" id="2_5g6cq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g6cq"]
-size = Vector2(19, 12)
+size = Vector2(19, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6unwo"]
 size = Vector2(24, 25)
@@ -21,11 +21,12 @@ hframes = 3
 vframes = 4
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=299202650]
-position = Vector2(-0.5, 2)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_5g6cq")
 
 [node name="interactable" type="Area2D" parent="." unique_id=1259901395]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactable" unique_id=292758309]
+visible = false
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_6unwo")
