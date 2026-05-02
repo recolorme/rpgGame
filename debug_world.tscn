@@ -3,21 +3,35 @@
 [ext_resource type="Script" uid="uid://d0noxgn3w4wb" path="res://Overworld/room.gd" id="1_n16uc"]
 [ext_resource type="Texture2D" uid="uid://bubi8i2ta78wc" path="res://assets/debug_world.png" id="1_ppmq8"]
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="2_n16uc"]
+[ext_resource type="PackedScene" uid="uid://clmx54k6byynp" path="res://Overworld/NPC.tscn" id="4_nj5k2"]
+[ext_resource type="PackedScene" uid="uid://31n12gemnkal" path="res://Text/textbox.tscn" id="5_n6d21"]
 
-[node name="DebugWorld" type="Node2D" unique_id=2011065134]
+[node name="Debug World" type="Node2D" unique_id=2011065134]
+y_sort_enabled = true
 script = ExtResource("1_n16uc")
 
 [node name="DebugWorldMap" type="Sprite2D" parent="." unique_id=829114906]
+z_index = -10
 position = Vector2(227, 1)
 texture = ExtResource("1_ppmq8")
 metadata/_edit_lock_ = true
-
-[node name="Player" parent="." unique_id=809986654 instance=ExtResource("2_n16uc")]
-z_index = 2
-position = Vector2(-22, -15)
 
 [node name="Collisions" type="StaticBody2D" parent="." unique_id=103894137]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions" unique_id=1022148675]
 position = Vector2(1, 0)
 polygon = PackedVector2Array(-72, -35, -86, -21, -86, 139, -72, 153, 524, 153, 538, 139, 538, -21, 524, -35, -72, -35, 525, -199, 547, -199, 549, 201, -124, 201, -124, -199, 525, -198)
+
+[node name="Player" parent="." unique_id=809986654 instance=ExtResource("2_n16uc")]
+position = Vector2(-22, -15)
+
+[node name="npc" parent="." unique_id=257219518 instance=ExtResource("4_nj5k2")]
+position = Vector2(61, 1)
+collision_layer = 257
+collision_mask = 4353
+jsonPath = "res://Text/Dialogues/sample.txt"
+
+[node name="Textbox" parent="." unique_id=1541430851 instance=ExtResource("5_n6d21")]
+
+[node name="Objects" type="TileMapLayer" parent="." unique_id=1441619849]
+position = Vector2(0, -1)

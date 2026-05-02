@@ -287,6 +287,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-23.380226, 106)
 
 [node name="Player" type="CharacterBody2D" unique_id=976425999]
+collision_mask = 4353
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
 script = ExtResource("1_i1m7t")

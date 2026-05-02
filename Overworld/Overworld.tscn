@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bappyg3rx3k14" path="res://Overworld/player.tscn" id="1_m0wi0"]
 [ext_resource type="PackedScene" uid="uid://f7vmuwfukbqs" path="res://Overworld/enemy_spawner.tscn" id="3_68let"]
 [ext_resource type="PackedScene" uid="uid://clgtpjlscnpwt" path="res://Overworld/basic_enemy.tscn" id="4_4rymo"]
-[ext_resource type="PackedScene" uid="uid://cm7p4h805qkcn" path="res://Overworld/interactable.tscn" id="5_0u72k"]
 [ext_resource type="PackedScene" uid="uid://31n12gemnkal" path="res://Text/textbox.tscn" id="6_3rv81"]
+[ext_resource type="PackedScene" uid="uid://clmx54k6byynp" path="res://Overworld/NPC.tscn" id="8_w5i8j"]
 
 [node name="Saturn Valley" type="Node2D" unique_id=178122886]
 script = ExtResource("1_3rv81")
@@ -23,7 +23,7 @@ z_index = 2
 position = Vector2(88, -66)
 enemy_scene = ExtResource("4_4rymo")
 
-[node name="Door" parent="." unique_id=346674738 instance=ExtResource("5_0u72k")]
-position = Vector2(65, 21)
-
 [node name="Textbox" parent="." unique_id=840259716 instance=ExtResource("6_3rv81")]
+
+[node name="npc" parent="." unique_id=791792026 instance=ExtResource("8_w5i8j")]
+position = Vector2(-67, -33)
