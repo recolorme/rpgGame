@@ -324,6 +324,5 @@ stream = ExtResource("3_fh1xq")
 
 [node name="interactionHint" type="Sprite2D" parent="." unique_id=1786049020]
 visible = false
-position = Vector2(-0.6250001, -31.374998)
-scale = Vector2(0.90625, 0.90625066)
+position = Vector2(0, -32)
 texture = ExtResource("4_hgm6w")

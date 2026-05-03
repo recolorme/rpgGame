@@ -1,5 +1,6 @@
 [
 	"hey there friend. im the default NPC",
 	"my name is freddy fazpolarbear",
-	"hur, hur, hu-hur, hur, hur hu-hur hu-hur"
+	"hur, hur, hu-hur, hur, hur hu-hur hu-hur",
+	"we're all just mims anyway"
 ]
