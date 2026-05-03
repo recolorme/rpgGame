@@ -6,7 +6,7 @@ public partial class textboxHandler : Node
 {
 	public MarginContainer TextboxContainer;
 	public Label endSymbol;
-	public Label text;
+	public RichTextLabel text;
 	public float TEXT_SPEED = 0.04f;
 	public string[] textQueue;
 	public int totalChars;
@@ -25,9 +25,10 @@ public partial class textboxHandler : Node
 	{
 		base._Ready();
 		TextboxContainer = GetNode<MarginContainer>("TextboxContainer");
-		text = GetNode<Label>("TextboxContainer/Panel/HBoxContainer/Label");
+		text = GetNode<RichTextLabel>("TextboxContainer/Panel/HBoxContainer/RichTextLabel");
 		endSymbol = GetNode<Label>("TextboxContainer/Panel/HBoxContainer/endSymbol");
 
+		text.BbcodeEnabled = true;
 		text.VisibleCharactersBehavior = TextServer.VisibleCharactersBehavior.CharsAfterShaping;
 
 		hideTextbox();

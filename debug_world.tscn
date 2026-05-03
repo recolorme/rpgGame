@@ -17,6 +17,7 @@ texture = ExtResource("1_ppmq8")
 metadata/_edit_lock_ = true
 
 [node name="Collisions" type="StaticBody2D" parent="." unique_id=103894137]
+position = Vector2(0, -1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions" unique_id=1022148675]
 position = Vector2(1, 0)

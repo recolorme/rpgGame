@@ -47,17 +47,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="TextboxContainer/Panel/HBoxContainer" unique_id=1661577238]
-clip_contents = true
+[node name="RichTextLabel" type="RichTextLabel" parent="TextboxContainer/Panel/HBoxContainer" unique_id=1247736847]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
-theme_override_font_sizes/font_size = 16
+theme_override_constants/line_separation = 3
+theme_override_constants/paragraph_separation = 0
+theme_override_font_sizes/normal_font_size = 16
 text = "dadagobli dadagobli dadagobli dadagobli dadagobli"
+scroll_active = false
 autowrap_mode = 2
-clip_text = true
 
 [node name="endSymbol" type="Label" parent="TextboxContainer/Panel/HBoxContainer" unique_id=1864354591]
 custom_minimum_size = Vector2(8, 16)
