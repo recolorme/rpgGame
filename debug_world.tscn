@@ -23,7 +23,7 @@ position = Vector2(1, 0)
 polygon = PackedVector2Array(-72, -35, -86, -21, -86, 139, -72, 153, 524, 153, 538, 139, 538, -21, 524, -35, -72, -35, 525, -199, 547, -199, 549, 201, -124, 201, -124, -199, 525, -198)
 
 [node name="Player" parent="." unique_id=809986654 instance=ExtResource("2_n16uc")]
-position = Vector2(-22, -15)
+position = Vector2(-21, -7)
 
 [node name="npc" parent="." unique_id=257219518 instance=ExtResource("4_nj5k2")]
 position = Vector2(61, 1)

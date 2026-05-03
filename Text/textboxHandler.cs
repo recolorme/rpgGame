@@ -7,8 +7,10 @@ public partial class textboxHandler : Node
 	public MarginContainer TextboxContainer;
 	public Label endSymbol;
 	public Label text;
-	public float TEXT_SPEED = 2f;
+	public float TEXT_SPEED = 0.04f;
 	public string[] textQueue;
+	public int totalChars;
+	public float duration;
 
 	public enum State
 	{
@@ -19,7 +21,6 @@ public partial class textboxHandler : Node
 	public State currentState = State.IDLE;
 	private Tween tween;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
@@ -32,8 +33,7 @@ public partial class textboxHandler : Node
 		hideTextbox();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void _Process(double _delta)
 	{
 		switch (currentState)
 		{
@@ -42,13 +42,14 @@ public partial class textboxHandler : Node
 				{
 					_ = displayText(textQueue[0]);
 					textQueue = textQueue[1..];
+					endSymbol.Text = "";
 				}
 				break;
 			case State.TYPING:
 				if(Input.IsActionJustPressed("ui_accept"))
 				{
 					tween.Kill();
-					text.VisibleRatio = 1f;
+					text.VisibleCharacters = text.GetTotalCharacterCount();
 					currentState = State.FINISHED;
 					endSymbol.Text = "*"; 
 				}
@@ -66,7 +67,7 @@ public partial class textboxHandler : Node
 	public void hideTextbox()
 	{
 		text.Text = "";
-		text.VisibleRatio = 0f;
+		text.VisibleCharacters = 0;
 		endSymbol.Text = "";
 		TextboxContainer.Hide();
 	}
@@ -76,10 +77,14 @@ public partial class textboxHandler : Node
 		if(!TextboxContainer.Visible) TextboxContainer.Show();
 		currentState = State.TYPING;
 		text.Text = nextText;
-		text.VisibleRatio = 0f;
+		totalChars = text.GetTotalCharacterCount();
+		text.VisibleCharacters = 0;
 
 		tween = GetTree().CreateTween();
-		tween.TweenProperty(text, "visible_ratio", TEXT_SPEED, TEXT_SPEED);
+		duration = totalChars * TEXT_SPEED;
+		tween.TweenProperty(text, "visible_characters", totalChars, duration);
+
+		if (textQueue.Length == 0) endSymbol.Text = "*";
 
 		await ToSignal(tween, "finished");
 		currentState = State.FINISHED;
