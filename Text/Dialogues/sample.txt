@@ -2,8 +2,8 @@
 	"hey there friend. im the default NPC",
 	"my name is freddy fazpolarbear",
 	"hur, hur, hu-hur, hur, hur hu-hur hu-hur",
-	"[wave amp=30.0 freq=7.0]im fazbearing out rn, wow[/wave]",
-	"[tornado radius=4.0 freq=7.0]whoooooosh[/tornado]",
+	"[wave amp=30.0 freq=-7.0]im fazbearing out rn, wow[/wave]",
+	"[tornado radius=4.0 freq=-7.0]whoooooosh[/tornado]",
 	"[shake rate=30.0 level=7]im scared now, guy[/shake]",
 	"[rainbow]wait, its ok. we're at full power now[/rainbow]"
 ]

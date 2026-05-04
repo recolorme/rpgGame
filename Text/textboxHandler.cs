@@ -28,7 +28,9 @@ public partial class textboxHandler : Node
 		text = GetNode<RichTextLabel>("TextboxContainer/Panel/HBoxContainer/RichTextLabel");
 		endSymbol = GetNode<Label>("TextboxContainer/Panel/HBoxContainer/endSymbol");
 
+		// text effects
 		text.BbcodeEnabled = true;
+		// word wrapping
 		text.VisibleCharactersBehavior = TextServer.VisibleCharactersBehavior.CharsAfterShaping;
 
 		hideTextbox();
