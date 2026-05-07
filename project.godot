@@ -20,12 +20,17 @@ config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 run/max_fps=60
 config/icon="res://Battle/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bkpcna3m7yme1"
+
 [autoload]
 
+Global="*uid://1je8icnblwba"
 Debug="*res://Battle/debug.gd"
 Data="*res://Battle/data.gd"
-Globals="*uid://dybguadfojrtb"
 PlayerVariables="*uid://ccd7da2q8o6a1"
+UiManager="*uid://cvhup5g6vvovb"
 
 [debug]
 

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b8jm2psg61jdu" path="res://assets/placeholderenemy.png" id="2_jhubj"]
 
 [node name="Enemy Spawner" type="Marker2D" unique_id=2024876439]
-z_index = 1
 script = ExtResource("1_jhubj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=244026038]

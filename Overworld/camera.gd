@@ -1,7 +1,7 @@
 class_name PlayerCamera extends Camera2D
 
 func _ready() -> void:
-	Globals.TileMapBoundsChanged.connect(_on_bounds_changed)
+	Global.TileMapBoundsChanged.connect(_on_bounds_changed)
 	
 	set_bounds_from_texture()
 

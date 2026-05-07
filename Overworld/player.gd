@@ -90,10 +90,10 @@ func update_animation_parameters():
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
 
-	if(Input.is_action_pressed("shift")):
-		animation_tree["parameters/conditions/run"] = true
-	else:
-		animation_tree["parameters/conditions/run"] = false
+	# if(Input.is_action_pressed("shift")):
+	# 	animation_tree["parameters/conditions/run"] = true
+	# else:
+	# 	animation_tree["parameters/conditions/run"] = false
 
 	if(direction != Vector2.ZERO):
 		animation_tree["parameters/idle/blend_position"] = direction

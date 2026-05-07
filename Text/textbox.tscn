@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://31n12gemnkal"]
 
 [ext_resource type="Script" uid="uid://4agqjgnk8wdy" path="res://Text/textboxHandler.cs" id="1_lr561"]
+[ext_resource type="AudioStream" uid="uid://c4qedq2hln7f3" path="res://assets/sfx/textboxsfx.ogg" id="2_w0rwv"]
 [ext_resource type="Script" uid="uid://nuljudgpchjn" path="res://Text/JSONHelper.gd" id="2_wgx5w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5u67"]
@@ -12,15 +13,28 @@ border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
 [node name="Textbox" type="CanvasLayer" unique_id=377379844]
+layer = 0
 script = ExtResource("1_lr561")
 
-[node name="TextboxContainer" type="MarginContainer" parent="." unique_id=450311971]
+[node name="TextboxUI" type="Control" parent="." unique_id=1289721684]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 194.0
+offset_right = 49.0
+offset_bottom = 234.0
+
+[node name="TextboxContainer" type="MarginContainer" parent="TextboxUI" unique_id=450311971]
 z_index = 1
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -54.0
+offset_left = -9.0
+offset_top = -48.0
+offset_right = 207.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -30,24 +44,24 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Panel" type="Panel" parent="TextboxContainer" unique_id=1295756970]
+[node name="Panel" type="Panel" parent="TextboxUI/TextboxContainer" unique_id=1295756970]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c5u67")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/Panel" unique_id=964266029]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxUI/TextboxContainer/Panel" unique_id=964266029]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -2.0
+offset_right = -5.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextboxContainer/Panel/HBoxContainer" unique_id=1247736847]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextboxUI/TextboxContainer/Panel/HBoxContainer" unique_id=1247736847]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -59,12 +73,21 @@ text = "dadagobli dadagobli dadagobli dadagobli dadagobli"
 scroll_active = false
 autowrap_mode = 2
 
-[node name="endSymbol" type="Label" parent="TextboxContainer/Panel/HBoxContainer" unique_id=1864354591]
+[node name="endSymbol" type="Label" parent="TextboxUI/TextboxContainer/Panel/HBoxContainer" unique_id=1864354591]
 custom_minimum_size = Vector2(8, 16)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "*"
+
+[node name="Timer" type="Timer" parent="TextboxUI" unique_id=732698727]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TextboxUI" unique_id=2030667699]
+stream = ExtResource("2_w0rwv")
+volume_db = -15.0
+max_polyphony = 6
+bus = &"SFX"
 
 [node name="JSONHelper" type="Node" parent="." unique_id=1277734994]
 script = ExtResource("2_wgx5w")
