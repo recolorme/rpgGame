@@ -196,10 +196,6 @@ func run_event() -> void:
 
 	run_event()
 
-func event(BattleActor):
-	pass
-
-
 #TODO: add this suggestion from steven to the code. 
 #nextevent() {
 #if(event_queue.length > 0)

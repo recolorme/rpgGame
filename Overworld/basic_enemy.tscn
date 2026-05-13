@@ -33,6 +33,7 @@ position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_oum5w")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1886279273]
+visible = false
 position = Vector2(-5, -18)
 rect = Rect2(-10, -10, 30, 35)
 

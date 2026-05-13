@@ -8,7 +8,7 @@ var data: BattleActor = null
 var tween: Tween = null
 
 @onready var start_pos: Vector2 = position
-@onready var recoil_direction: int = 1 if global_position.x > Globals.GAME_SIZE.x * 0.5 else -1
+@onready var recoil_direction: int = 1 if global_position.x > Global.GAME_SIZE.x * 0.5 else -1
 
 func set_data(_data: BattleActor) -> void:
 	data = _data

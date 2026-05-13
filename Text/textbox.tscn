@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://31n12gemnkal"]
 
-[ext_resource type="Script" uid="uid://4agqjgnk8wdy" path="res://Text/textboxHandler.cs" id="1_lr561"]
+[ext_resource type="Script" uid="uid://dpi0ciy80qnna" path="res://Text/textboxHandler.gd" id="1_w0rwv"]
 [ext_resource type="AudioStream" uid="uid://c4qedq2hln7f3" path="res://assets/sfx/textboxsfx.ogg" id="2_w0rwv"]
-[ext_resource type="Script" uid="uid://nuljudgpchjn" path="res://Text/JSONHelper.gd" id="2_wgx5w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5u67"]
 bg_color = Color(0, 0, 0, 1)
@@ -14,7 +13,7 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="Textbox" type="CanvasLayer" unique_id=377379844]
 layer = 0
-script = ExtResource("1_lr561")
+script = ExtResource("1_w0rwv")
 
 [node name="TextboxUI" type="Control" parent="." unique_id=1289721684]
 layout_mode = 3
@@ -88,6 +87,3 @@ stream = ExtResource("2_w0rwv")
 volume_db = -15.0
 max_polyphony = 6
 bus = &"SFX"
-
-[node name="JSONHelper" type="Node" parent="." unique_id=1277734994]
-script = ExtResource("2_wgx5w")

@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="rpgGame"
 run/main_scene="uid://cdwpt334wo0s5"
-config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=60
 config/icon="res://Battle/icon.svg"
 
@@ -29,8 +29,8 @@ buses/default_bus_layout="uid://bkpcna3m7yme1"
 Global="*uid://1je8icnblwba"
 Debug="*res://Battle/debug.gd"
 Data="*res://Battle/data.gd"
+uiManager="*uid://bfwb05onyflp7"
 PlayerVariables="*uid://ccd7da2q8o6a1"
-UiManager="*uid://cvhup5g6vvovb"
 
 [debug]
 

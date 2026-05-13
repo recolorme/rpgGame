@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jvg416ggc0cy"]
 
-[ext_resource type="Script" uid="uid://b22kxykaqlx7u" path="res://Overworld/npc.cs" id="1_5g6cq"]
+[ext_resource type="Script" uid="uid://7yfxeulr8r7l" path="res://Overworld/npc.gd" id="1_6unwo"]
 [ext_resource type="Texture2D" uid="uid://cvpmgk7nf2bk2" path="res://assets/NPC_freddy_fazpolarbear.png" id="2_5g6cq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g6cq"]
@@ -12,7 +12,8 @@ size = Vector2(24, 25)
 [node name="npc" type="CharacterBody2D" unique_id=431610779]
 collision_layer = 257
 collision_mask = 4353
-script = ExtResource("1_5g6cq")
+script = ExtResource("1_6unwo")
+json_path = ""
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=994934560]
 position = Vector2(0, -10)

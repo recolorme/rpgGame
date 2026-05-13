@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cs7oqe3l4df5e" path="res://assets/overworld_bg.png" id="1_c5u67"]
 [ext_resource type="PackedScene" uid="uid://f7vmuwfukbqs" path="res://Overworld/enemy_spawner.tscn" id="3_68let"]
 [ext_resource type="PackedScene" uid="uid://clgtpjlscnpwt" path="res://Overworld/basic_enemy.tscn" id="4_4rymo"]
-[ext_resource type="PackedScene" uid="uid://31n12gemnkal" path="res://Text/textbox.tscn" id="6_3rv81"]
 [ext_resource type="PackedScene" uid="uid://jvg416ggc0cy" path="res://Overworld/NPC.tscn" id="8_w5i8j"]
 
 [node name="Saturn Valley" type="Node2D" unique_id=178122886]
@@ -21,8 +20,8 @@ metadata/_edit_lock_ = true
 position = Vector2(88, -66)
 enemy_scene = ExtResource("4_4rymo")
 
-[node name="npc" parent="." unique_id=791792026 instance=ExtResource("8_w5i8j")]
-position = Vector2(-67, -33)
-jsonPath = "res://Text/Dialogues/door.txt"
+[node name="Objects" type="TileMapLayer" parent="." unique_id=1118784174]
+y_sort_enabled = true
 
-[node name="Textbox" parent="." unique_id=840259716 instance=ExtResource("6_3rv81")]
+[node name="npc" parent="Objects" unique_id=791792026 instance=ExtResource("8_w5i8j")]
+position = Vector2(-67, -33)

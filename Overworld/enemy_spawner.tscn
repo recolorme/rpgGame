@@ -12,3 +12,4 @@ texture = ExtResource("2_jhubj")
 [node name="Timer" type="Timer" parent="." unique_id=1070384155]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1254140055]
+visible = false
