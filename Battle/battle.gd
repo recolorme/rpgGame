@@ -37,6 +37,7 @@ var player: BattleActor = null
 @onready var _down_cursor: TextureRect = $DownCursor
 
 func _ready() -> void:
+	Global.persist_player.queue_free()
 	_options.hide()
 	_down_cursor.hide()
 	

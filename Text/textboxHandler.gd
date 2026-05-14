@@ -24,11 +24,9 @@ var tween: Tween
 
 
 func _ready():
-	# convert Global.text (Array of [path, npc]) into Array[String] safely.
-	# text_queue is consumed in _process.
 	text_queue.clear()
 	if Global.text.size() == 0:
-		hide_textbox()
+		textbox_ui.hide()
 		return
 	
 	if typeof(Global.text[0]) == TYPE_STRING: # for strings
@@ -36,14 +34,26 @@ func _ready():
 	else: # for arrays
 		for entry in Global.text:
 			if typeof(entry) == TYPE_ARRAY and entry.size() > 0 and typeof(entry[0]) == TYPE_STRING:
-				text_queue.append(entry[0])
+				var path = entry[0]
+
+				var loaded_text = Global.load_dialogue(path)
+
+				for line in loaded_text:
+					if typeof(line) == TYPE_STRING:
+						text_queue.append(line)
+
+				#text_queue.append(entry[0])
 	timer.timeout.connect(_on_timer_timeout)
 
 	# text effects
 	text.bbcode_enabled = true
 	text.visible_characters_behavior = TextServer.VisibleCharactersBehavior.VC_CHARS_AFTER_SHAPING
 
-	hide_textbox()
+	is_active = false
+	text.text = ""
+	text.visible_characters = 0
+	end_symbol.text = ""
+	textbox_ui.hide()
 
 func _process(_delta):
 	match current_state:
@@ -68,12 +78,13 @@ func show_textbox() -> void:
 
 func hide_textbox() -> void:
 	is_active = false
-
 	text.text = ""
 	text.visible_characters = 0
 	end_symbol.text = ""
-	if textbox_ui != null:
-		textbox_ui.hide()
+	textbox_ui.hide()
+	
+	Global.persist_player.unpause()
+	uiManager.remove_ui(self)
 
 func display_text(next_text: String) -> void:
 	show_textbox()

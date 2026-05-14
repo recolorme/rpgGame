@@ -30,7 +30,6 @@ Global="*uid://1je8icnblwba"
 Debug="*res://Battle/debug.gd"
 Data="*res://Battle/data.gd"
 uiManager="*uid://bfwb05onyflp7"
-PlayerVariables="*uid://ccd7da2q8o6a1"
 
 [debug]
 

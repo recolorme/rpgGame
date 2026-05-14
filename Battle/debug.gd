@@ -13,6 +13,8 @@ func _unhandled_input(event) -> void:
 		var key: int = event.keycode
 		match key:
 			KEY_R:
+				Global.player_xpos = 0
+				Global.player_ypos = 0
 				get_tree().reload_current_scene()
 			KEY_Q:
 				get_tree().quit()

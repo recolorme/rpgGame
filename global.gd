@@ -9,47 +9,52 @@ var ui_layer = null
 var text = []
 var receiver = null
 var parent_node: Node = current_scene
+var player_xpos: int = 0
+var player_ypos: int = 0
 
 signal TileMapBoundsChanged(bounds: Array[Vector2])
 
 @onready var player_scene = load("res://Overworld/player.tscn")
 
 func _ready() -> void:
-	var root = get_tree().get_root()
+	# var root = get_tree().get_root()
 	
-	current_scene = root.get_child(root.get_child_count() - 1)
-	parent_node = current_scene
-	if current_scene == null:
-		return
+	# current_scene = root.get_child(root.get_child_count() - 1)
+	# parent_node = current_scene
+	# if current_scene == null:
+	# 	return
 
 
+	# # ensures that multiple players dont spawn
+	# var existing_player = get_tree().get_root().find_child("Player", true, false)
+	# if existing_player:
+	# 	persist_player = existing_player
 
-	# ensures that multiple players dont spawn
-	var existing_player = get_tree().get_root().find_child("Player", true, false)
-	if existing_player:
-		persist_player = existing_player
+	# 	if current_scene.has_node("Objects"):
+	# 		parent_node = current_scene.get_node("Objects")
+	# 	if existing_player.get_parent() != parent_node:
+	# 		existing_player.reparent(parent_node)
 
-		if current_scene.has_node("Objects"):
-			parent_node = current_scene.get_node("Objects")
-		if existing_player.get_parent() != parent_node:
-			existing_player.reparent(parent_node)
-
-		existing_player.position = Vector2.ZERO
-		return
-
+	# 	existing_player.position = Vector2(player_xpos, player_ypos)
+	# 	return
 	
-	# spawn player into the currently active scene (prefer an "Objects" node).
-	var player: Node = player_scene.instantiate()
-	player.name = "Player"
-
+	# # spawn player into the currently active scene (prefer an "Objects" node).
+	# var player: Node = player_scene.instantiate()
+	# player.name = "Player"
 	
-	parent_node.add_child(player)
+	# parent_node.add_child(player)
+
+	# persist_player = player
+
+	# # restores position when coming from battle
 
 
-	persist_player = player
-	player.position.x = 0
-	player.position.y = 0
+	# player.position.x = int(player_xpos)
+	# player.position.y = int(player_ypos)
+	restore_player()
 
+	get_tree().node_added.connect(_on_scene_changed)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 		
@@ -60,6 +65,7 @@ func change_tilemap_bounds(bounds: Array[Vector2]) -> void:
 	TileMapBoundsChanged.emit(bounds)
 
 func set_text(path: String, scene_npc = null) -> void:
+	text.clear()
 	text.append(["res://Text/Dialogues/" + path + ".txt", scene_npc])
 
 	# dialogue.append(["res://Data/Dialogue/" + path +".yaml", npc])
@@ -82,3 +88,40 @@ func load_dialogue(path: String) -> Array:
 		return []
 
 	return json.data
+
+
+func _on_scene_changed(node):
+	if node == get_tree().current_scene:
+		restore_player()
+
+func restore_player():
+	var root = get_tree().get_root()
+	
+	current_scene = root.get_child(root.get_child_count() - 1)
+
+	if current_scene == null:
+		return
+	
+	parent_node = current_scene
+
+	if current_scene.has_node("Objects"):
+		parent_node = current_scene.get_node("Objects")
+
+	# ensures that multiple players dont spawn
+	var existing_player = get_tree().get_root().find_child("Player", true, false)
+
+	if existing_player:
+		persist_player = existing_player
+
+		if existing_player.get_parent() != parent_node:
+			existing_player.reparent(parent_node)
+
+		existing_player.position = Vector2(player_xpos, player_ypos)
+		return
+	else:
+		var player: Node = player_scene.instantiate()
+		player.name = "Player"
+	
+		parent_node.add_child(player)
+		persist_player = player
+		player.global_position = Vector2(player_xpos, player_ypos)

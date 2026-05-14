@@ -25,3 +25,4 @@ y_sort_enabled = true
 
 [node name="npc" parent="Objects" unique_id=791792026 instance=ExtResource("8_w5i8j")]
 position = Vector2(-67, -33)
+json_path = "door"

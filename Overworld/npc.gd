@@ -27,7 +27,7 @@ func _ready():
 
 
 func _process(_delta) -> void:
-	if player_in_range and Input.is_action_just_pressed("ui_accept"):
+	if player_in_range and Input.is_action_just_pressed("ui_accept") and !uiManager.ui_active:
 		run_interaction()
 
 func _set_text():
@@ -61,12 +61,12 @@ func run_interaction():
 
 
 	#text = "mmg"
-	Global.set_text("test", self)
+	Global.set_text(str(json_path), self)
 	# Global.set_text(json_path, self) 
 	uiManager.open_textbox()
 	# textbox.text_queue = text_array
 	Global.persist_player.pause()
-
+	
 
 	# Only add new lines if the textbox is idle
 	# if textbox_handler.current_state == textbox_handler.State.IDLE:
@@ -74,3 +74,4 @@ func run_interaction():
 	
 func stop_interaction():
 	pass
+	

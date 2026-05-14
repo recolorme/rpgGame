@@ -26,7 +26,12 @@ y_sort_enabled = true
 
 [node name="npc" parent="Objects" unique_id=257219518 instance=ExtResource("4_nj5k2")]
 position = Vector2(61, 1)
-json_path = "mmg"
+json_path = "sample"
 
 [node name="npc2" parent="Objects" unique_id=431610779 instance=ExtResource("4_nj5k2")]
 position = Vector2(148, 16)
+json_path = "test"
+
+[node name="npc3" parent="Objects" unique_id=1293972703 instance=ExtResource("4_nj5k2")]
+position = Vector2(242, 10)
+json_path = "door"

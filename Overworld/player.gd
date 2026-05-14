@@ -84,13 +84,7 @@ func round_vector(pos: Vector2) -> Vector2:
 
 # might remove this func later....
 func can_move() -> bool:
-	# if textbox_handler == null: # dirty fix
-	# 	return true
-	
-	# #TODO: maybe reuse state enum in the return statement?
-	# return textbox_handler.current_state == textboxHandler.State.IDLE \
-	# 	and textbox_handler.text_queue.size() == 0
-	return true
+	return !paused
 
 # is this even necessary still?
 # maybe add on to it if still in use
@@ -98,7 +92,11 @@ func pause() -> void:
 	state = MOVE
 	paused = true
 	input_vector = Vector2.ZERO
-	pass
+
+func unpause() -> void:
+	state = MOVE
+	paused = false
+	
 
 func update_animation_parameters():
 	if(direction == Vector2.ZERO):
